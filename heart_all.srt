@@ -1,0 +1,175 @@
+﻿1
+00:00:00,200 --> 00:00:00,300
+<font color="#ff00ffff">This</font> cat is
+
+2
+00:00:00,300 --> 00:00:00,480
+This <font color="#ff00ffff">cat</font> is
+
+3
+00:00:00,480 --> 00:00:00,620
+This cat <font color="#ff00ffff">is</font>
+
+4
+00:00:00,620 --> 00:00:00,680
+<font color="#ff00ffff">a</font> master of
+
+5
+00:00:00,680 --> 00:00:00,940
+a <font color="#ff00ffff">master</font> of
+
+6
+00:00:00,940 --> 00:00:01,080
+a master <font color="#ff00ffff">of</font>
+
+7
+00:00:01,100 --> 00:00:01,260
+<font color="#ff00ffff">finding</font> fresh water.
+
+8
+00:00:01,260 --> 00:00:01,460
+finding <font color="#ff00ffff">fresh</font> water.
+
+9
+00:00:01,460 --> 00:00:01,560
+finding fresh <font color="#ff00ffff">water.</font>
+
+10
+00:00:02,160 --> 00:00:02,280
+<font color="#ff00ffff">Instead</font> of using
+
+11
+00:00:02,280 --> 00:00:02,420
+Instead <font color="#ff00ffff">of</font> using
+
+12
+00:00:02,420 --> 00:00:02,560
+Instead of <font color="#ff00ffff">using</font>
+
+13
+00:00:02,560 --> 00:00:02,700
+<font color="#ff00ffff">the</font> bowl
+
+14
+00:00:02,700 --> 00:00:02,860
+the <font color="#ff00ffff">bowl</font>
+
+15
+00:00:02,860 --> 00:00:03,000
+<font color="#ff00ffff">like</font> everyone else,
+
+16
+00:00:03,000 --> 00:00:03,260
+like <font color="#ff00ffff">everyone</font> else,
+
+17
+00:00:03,260 --> 00:00:03,480
+like everyone <font color="#ff00ffff">else,</font>
+
+18
+00:00:03,660 --> 00:00:03,720
+<font color="#ff00ffff">this</font> one
+
+19
+00:00:03,720 --> 00:00:03,840
+this <font color="#ff00ffff">one</font>
+
+20
+00:00:03,960 --> 00:00:04,060
+<font color="#ff00ffff">prefers</font> the faucet.
+
+21
+00:00:04,060 --> 00:00:04,240
+prefers <font color="#ff00ffff">the</font> faucet.
+
+22
+00:00:04,240 --> 00:00:04,540
+prefers the <font color="#ff00ffff">faucet.</font>
+
+23
+00:00:04,880 --> 00:00:04,980
+<font color="#ff00ffff">It</font> waits for
+
+24
+00:00:04,980 --> 00:00:05,120
+It <font color="#ff00ffff">waits</font> for
+
+25
+00:00:05,120 --> 00:00:05,260
+It waits <font color="#ff00ffff">for</font>
+
+26
+00:00:05,260 --> 00:00:05,340
+<font color="#ff00ffff">the</font> perfect drip,
+
+27
+00:00:05,340 --> 00:00:05,520
+the <font color="#ff00ffff">perfect</font> drip,
+
+28
+00:00:05,520 --> 00:00:05,760
+the perfect <font color="#ff00ffff">drip,</font>
+
+29
+00:00:06,020 --> 00:00:06,120
+<font color="#ff00ffff">then</font> takes a
+
+30
+00:00:06,120 --> 00:00:06,260
+then <font color="#ff00ffff">takes</font> a
+
+31
+00:00:06,260 --> 00:00:06,340
+then takes <font color="#ff00ffff">a</font>
+
+32
+00:00:06,340 --> 00:00:06,540
+<font color="#ff00ffff">careful</font> sip
+
+33
+00:00:06,540 --> 00:00:06,740
+careful <font color="#ff00ffff">sip</font>
+
+34
+00:00:06,740 --> 00:00:06,880
+<font color="#ff00ffff">like</font> a tiny
+
+35
+00:00:06,880 --> 00:00:06,980
+like <font color="#ff00ffff">a</font> tiny
+
+36
+00:00:06,980 --> 00:00:07,180
+like a <font color="#ff00ffff">tiny</font>
+
+37
+00:00:07,180 --> 00:00:07,380
+<font color="#ff00ffff">giraffe</font> with fur.
+
+38
+00:00:07,380 --> 00:00:07,600
+giraffe <font color="#ff00ffff">with</font> fur.
+
+39
+00:00:07,600 --> 00:00:07,740
+giraffe with <font color="#ff00ffff">fur.</font>
+
+40
+00:00:08,160 --> 00:00:08,260
+<font color="#ff00ffff">And</font> did
+
+41
+00:00:08,260 --> 00:00:08,360
+And <font color="#ff00ffff">did</font>
+
+42
+00:00:08,360 --> 00:00:08,440
+<font color="#ff00ffff">you</font> know that?
+
+43
+00:00:08,440 --> 00:00:08,580
+you <font color="#ff00ffff">know</font> that?
+
+44
+00:00:08,580 --> 00:00:08,740
+you know <font color="#ff00ffff">that?</font>

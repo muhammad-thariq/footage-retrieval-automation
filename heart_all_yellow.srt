@@ -1,0 +1,351 @@
+﻿1
+00:00:00,260 --> 00:00:00,360
+<font color="#ff00ffff">Cat</font> is a
+
+2
+00:00:00,360 --> 00:00:00,560
+Cat <font color="#ff00ffff">is</font> a
+
+3
+00:00:00,560 --> 00:00:00,660
+Cat is <font color="#ff00ffff">a</font>
+
+4
+00:00:00,660 --> 00:00:00,900
+<font color="#ff00ffff">master</font> of communication.
+
+5
+00:00:00,900 --> 00:00:01,140
+master <font color="#ff00ffff">of</font> communication.
+
+6
+00:00:01,140 --> 00:00:01,660
+master of <font color="#ff00ffff">communication.</font>
+
+7
+00:00:02,300 --> 00:00:02,500
+<font color="#ff00ffff">Cats</font> do not
+
+8
+00:00:02,500 --> 00:00:02,580
+Cats do not
+
+9
+00:00:02,580 --> 00:00:02,680
+Cats <font color="#ff00ffff">do</font> not
+
+10
+00:00:02,680 --> 00:00:02,800
+Cats do <font color="#ff00ffff">not</font>
+
+11
+00:00:02,800 --> 00:00:03,040
+<font color="#ff00ffff">only</font> meow for fun,
+
+12
+00:00:03,040 --> 00:00:03,280
+only <font color="#ff00ffff">meow</font> for fun,
+
+13
+00:00:03,280 --> 00:00:03,500
+only meow <font color="#ff00ffff">for</font> fun,
+
+14
+00:00:03,500 --> 00:00:03,740
+only meow for <font color="#ff00ffff">fun,</font>
+
+15
+00:00:04,020 --> 00:00:04,120
+<font color="#ff00ffff">they</font> use it
+
+16
+00:00:04,120 --> 00:00:04,320
+they <font color="#ff00ffff">use</font> it
+
+17
+00:00:04,320 --> 00:00:04,440
+they use <font color="#ff00ffff">it</font>
+
+18
+00:00:04,440 --> 00:00:04,640
+<font color="#ff00ffff">mainly</font> with humans.
+
+19
+00:00:04,640 --> 00:00:04,920
+mainly <font color="#ff00ffff">with</font> humans.
+
+20
+00:00:04,920 --> 00:00:05,020
+mainly with <font color="#ff00ffff">humans.</font>
+
+21
+00:00:05,820 --> 00:00:05,980
+<font color="#ff00ffff">Adult</font> cats rarely
+
+22
+00:00:05,980 --> 00:00:06,260
+Adult <font color="#ff00ffff">cats</font> rarely
+
+23
+00:00:06,260 --> 00:00:06,560
+Adult cats <font color="#ff00ffff">rarely</font>
+
+24
+00:00:06,560 --> 00:00:06,960
+<font color="#ff00ffff">meow</font> at each other.
+
+25
+00:00:06,960 --> 00:00:07,140
+meow <font color="#ff00ffff">at</font> each other.
+
+26
+00:00:07,140 --> 00:00:07,300
+meow at <font color="#ff00ffff">each</font> other.
+
+27
+00:00:07,300 --> 00:00:07,480
+meow at each <font color="#ff00ffff">other.</font>
+
+28
+00:00:07,900 --> 00:00:08,140
+<font color="#ff00ffff">Instead,</font>
+
+29
+00:00:08,480 --> 00:00:08,580
+<font color="#ff00ffff">they</font> reserve meowing
+
+30
+00:00:08,580 --> 00:00:08,880
+they <font color="#ff00ffff">reserve</font> meowing
+
+31
+00:00:08,880 --> 00:00:09,260
+they reserve <font color="#ff00ffff">meowing</font>
+
+32
+00:00:09,260 --> 00:00:09,440
+<font color="#ff00ffff">to</font> interact with people.
+
+33
+00:00:09,440 --> 00:00:09,820
+to <font color="#ff00ffff">interact</font> with people.
+
+34
+00:00:09,820 --> 00:00:10,040
+to interact <font color="#ff00ffff">with</font> people.
+
+35
+00:00:10,040 --> 00:00:10,320
+to interact with <font color="#ff00ffff">people.</font>
+
+36
+00:00:10,800 --> 00:00:10,940
+<font color="#ff00ffff">Each</font> sound has meaning.
+
+37
+00:00:10,940 --> 00:00:11,200
+Each <font color="#ff00ffff">sound</font> has meaning.
+
+38
+00:00:11,200 --> 00:00:11,400
+Each sound <font color="#ff00ffff">has</font> meaning.
+
+39
+00:00:11,400 --> 00:00:11,660
+Each sound has <font color="#ff00ffff">meaning.</font>
+
+40
+00:00:12,600 --> 00:00:12,700
+<font color="#ff00ffff">A</font> short meow
+
+41
+00:00:12,700 --> 00:00:12,840
+A <font color="#ff00ffff">short</font> meow
+
+42
+00:00:12,840 --> 00:00:13,100
+A short <font color="#ff00ffff">meow</font>
+
+43
+00:00:13,100 --> 00:00:13,300
+<font color="#ff00ffff">can</font> mean hello,
+
+44
+00:00:13,300 --> 00:00:13,420
+can <font color="#ff00ffff">mean</font> hello,
+
+45
+00:00:13,420 --> 00:00:13,720
+can mean <font color="#ff00ffff">hello,</font>
+
+46
+00:00:14,120 --> 00:00:14,220
+<font color="#ff00ffff">a</font> longer meow
+
+47
+00:00:14,220 --> 00:00:14,460
+a <font color="#ff00ffff">longer</font> meow
+
+48
+00:00:14,460 --> 00:00:14,680
+a longer <font color="#ff00ffff">meow</font>
+
+49
+00:00:14,680 --> 00:00:14,900
+<font color="#ff00ffff">can</font> mean demand.
+
+50
+00:00:14,900 --> 00:00:15,060
+can <font color="#ff00ffff">mean</font> demand.
+
+51
+00:00:15,060 --> 00:00:15,340
+can mean <font color="#ff00ffff">demand.</font>
+
+52
+00:00:15,860 --> 00:00:16,020
+<font color="#ff00ffff">A</font> per
+
+53
+00:00:16,020 --> 00:00:16,080
+A per
+
+54
+00:00:16,080 --> 00:00:16,180
+A <font color="#ff00ffff">per</font>
+
+55
+00:00:16,180 --> 00:00:16,620
+<font color="#ff00ffff">-offent</font> shows comfort,
+
+56
+00:00:16,620 --> 00:00:16,820
+-offent <font color="#ff00ffff">shows</font> comfort,
+
+57
+00:00:16,820 --> 00:00:17,120
+-offent shows <font color="#ff00ffff">comfort,</font>
+
+58
+00:00:17,460 --> 00:00:17,560
+<font color="#ff00ffff">but</font> sometimes it
+
+59
+00:00:17,560 --> 00:00:17,960
+but <font color="#ff00ffff">sometimes</font> it
+
+60
+00:00:17,960 --> 00:00:18,160
+but sometimes <font color="#ff00ffff">it</font>
+
+61
+00:00:18,160 --> 00:00:18,260
+<font color="#ff00ffff">can</font> also mean stress.
+
+62
+00:00:18,260 --> 00:00:18,500
+can <font color="#ff00ffff">also</font> mean stress.
+
+63
+00:00:18,500 --> 00:00:18,700
+can also <font color="#ff00ffff">mean</font> stress.
+
+64
+00:00:18,700 --> 00:00:19,020
+can also mean <font color="#ff00ffff">stress.</font>
+
+65
+00:00:19,640 --> 00:00:19,740
+<font color="#ff00ffff">So</font> if
+
+66
+00:00:19,740 --> 00:00:19,920
+So <font color="#ff00ffff">if</font>
+
+67
+00:00:19,920 --> 00:00:19,980
+<font color="#ff00ffff">you</font> pay attention,
+
+68
+00:00:19,980 --> 00:00:20,140
+you <font color="#ff00ffff">pay</font> attention,
+
+69
+00:00:20,140 --> 00:00:20,520
+you pay <font color="#ff00ffff">attention,</font>
+
+70
+00:00:20,880 --> 00:00:20,940
+<font color="#ff00ffff">your</font> cat is
+
+71
+00:00:20,940 --> 00:00:21,180
+your <font color="#ff00ffff">cat</font> is
+
+72
+00:00:21,180 --> 00:00:21,320
+your cat <font color="#ff00ffff">is</font>
+
+73
+00:00:21,320 --> 00:00:21,580
+<font color="#ff00ffff">talking</font> to you
+
+74
+00:00:21,580 --> 00:00:21,760
+talking <font color="#ff00ffff">to</font> you
+
+75
+00:00:21,760 --> 00:00:21,880
+talking to <font color="#ff00ffff">you</font>
+
+76
+00:00:21,880 --> 00:00:22,100
+<font color="#ff00ffff">all</font> the time in
+
+77
+00:00:22,100 --> 00:00:22,220
+all <font color="#ff00ffff">the</font> time in
+
+78
+00:00:22,220 --> 00:00:22,420
+all the <font color="#ff00ffff">time</font> in
+
+79
+00:00:22,420 --> 00:00:22,540
+all the time <font color="#ff00ffff">in</font>
+
+80
+00:00:22,540 --> 00:00:22,680
+<font color="#ff00ffff">its</font> own language.
+
+81
+00:00:22,680 --> 00:00:22,700
+its own language.
+
+82
+00:00:22,700 --> 00:00:22,800
+its <font color="#ff00ffff">own</font> language.
+
+83
+00:00:22,800 --> 00:00:23,120
+its own <font color="#ff00ffff">language.</font>
+
+84
+00:00:23,640 --> 00:00:23,740
+<font color="#ff00ffff">And</font> did
+
+85
+00:00:23,740 --> 00:00:23,860
+And <font color="#ff00ffff">did</font>
+
+86
+00:00:23,860 --> 00:00:23,980
+<font color="#ff00ffff">you</font> know that?
+
+87
+00:00:23,980 --> 00:00:24,140
+you <font color="#ff00ffff">know</font> that?
+
+88
+00:00:24,140 --> 00:00:24,440
+you know <font color="#ff00ffff">that?</font>

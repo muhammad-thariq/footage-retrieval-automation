@@ -1,0 +1,15 @@
+# Per-second cat activity summary for video1.mp4
+# Model: Salesforce/blip-image-captioning-large
+# Duration (approx): 10 seconds
+
+00:00 — there is a cat that is standing on a sink with water coming out of it.
+00:01 — there is a cat that is drinking water from a faucet.
+00:02 — A cat araffe drinking water from a faucet in a bathroom sink.
+00:03 — there is a cat that is sitting on a sink with water coming out of it.
+00:04 — there is a cat that is sitting on a sink with a faucet.
+00:05 — araffe cat drinking water from a faucet in a bathroom.
+00:06 — there is a cat that is drinking water from a faucet.
+00:07 — there is a cat that is standing on a counter drinking water.
+00:08 — there is a cat that is drinking water from a faucet.
+00:09 — araffe cat drinking water from a faucet in a bathroom.
+00:10 — araffe cat drinking water from a faucet in a bathroom sink.
