@@ -1,0 +1,431 @@
+1
+00:00:00,000 --> 00:00:00,360
+<font color="#00ff00">Cat</font> is a built-in vibration machine.
+
+2
+00:00:00,360 --> 00:00:00,560
+Cat <font color="#00ff00">is</font> a built-in vibration machine.
+
+3
+00:00:00,560 --> 00:00:00,660
+Cat is <font color="#00ff00">a</font> built-in vibration machine.
+
+4
+00:00:00,660 --> 00:00:00,840
+Cat is a <font color="#00ff00">built</font>-in vibration machine.
+
+5
+00:00:00,840 --> 00:00:01,080
+Cat is a built<font color="#00ff00">-in</font> vibration machine.
+
+6
+00:00:01,080 --> 00:00:01,420
+Cat is a built-in <font color="#00ff00">vibration</font> machine.
+
+7
+00:00:01,420 --> 00:00:01,840
+Cat is a built-in vibration <font color="#00ff00">machine.</font>
+
+8
+00:00:02,320 --> 00:00:02,380
+<font color="#00ff00">When</font> a cat purrs, it is
+
+9
+00:00:02,380 --> 00:00:02,500
+When <font color="#00ff00">a</font> cat purrs, it is
+
+10
+00:00:02,500 --> 00:00:02,640
+When a <font color="#00ff00">cat</font> purrs, it is
+
+11
+00:00:02,640 --> 00:00:03,100
+When a cat <font color="#00ff00">purrs,</font> it is
+
+12
+00:00:03,100 --> 00:00:03,280
+When a cat purrs, it is
+
+13
+00:00:03,280 --> 00:00:03,440
+When a cat purrs, <font color="#00ff00">it</font> is
+
+14
+00:00:03,440 --> 00:00:03,520
+When a cat purrs, it <font color="#00ff00">is</font>
+
+15
+00:00:03,520 --> 00:00:03,680
+<font color="#00ff00">not</font> just for pleasure.
+
+16
+00:00:03,680 --> 00:00:03,880
+not <font color="#00ff00">just</font> for pleasure.
+
+17
+00:00:03,880 --> 00:00:04,100
+not just <font color="#00ff00">for</font> pleasure.
+
+18
+00:00:04,100 --> 00:00:04,420
+not just for <font color="#00ff00">pleasure.</font>
+
+19
+00:00:05,000 --> 00:00:05,160
+<font color="#00ff00">Purring</font> happens at a frequency
+
+20
+00:00:05,160 --> 00:00:05,480
+Purring <font color="#00ff00">happens</font> at a frequency
+
+21
+00:00:05,480 --> 00:00:05,640
+Purring happens <font color="#00ff00">at</font> a frequency
+
+22
+00:00:05,640 --> 00:00:05,720
+Purring happens at <font color="#00ff00">a</font> frequency
+
+23
+00:00:05,720 --> 00:00:06,060
+Purring happens at a <font color="#00ff00">frequency</font>
+
+24
+00:00:06,060 --> 00:00:06,460
+<font color="#00ff00">between</font> 25 and 150 hertz.
+
+25
+00:00:06,460 --> 00:00:07,020
+between <font color="#00ff00">25</font> and 150 hertz.
+
+26
+00:00:07,020 --> 00:00:07,320
+between 25 <font color="#00ff00">and</font> 150 hertz.
+
+27
+00:00:07,320 --> 00:00:07,800
+between 25 and <font color="#00ff00">150</font> hertz.
+
+28
+00:00:07,800 --> 00:00:08,200
+between 25 and 150 <font color="#00ff00">hertz.</font>
+
+29
+00:00:08,920 --> 00:00:09,040
+<font color="#00ff00">Studies</font> show that this range can promote
+
+30
+00:00:09,040 --> 00:00:09,320
+Studies <font color="#00ff00">show</font> that this range can promote
+
+31
+00:00:09,320 --> 00:00:09,520
+Studies show <font color="#00ff00">that</font> this range can promote
+
+32
+00:00:09,520 --> 00:00:09,660
+Studies show that <font color="#00ff00">this</font> range can promote
+
+33
+00:00:09,660 --> 00:00:09,920
+Studies show that this <font color="#00ff00">range</font> can promote
+
+34
+00:00:09,920 --> 00:00:10,180
+Studies show that this range <font color="#00ff00">can</font> promote
+
+35
+00:00:10,180 --> 00:00:10,460
+Studies show that this range can <font color="#00ff00">promote</font>
+
+36
+00:00:10,460 --> 00:00:10,780
+<font color="#00ff00">tissue</font> healing and reduce stress,
+
+37
+00:00:10,780 --> 00:00:11,120
+tissue <font color="#00ff00">healing</font> and reduce stress,
+
+38
+00:00:11,120 --> 00:00:11,360
+tissue healing <font color="#00ff00">and</font> reduce stress,
+
+39
+00:00:11,360 --> 00:00:11,600
+tissue healing and <font color="#00ff00">reduce</font> stress,
+
+40
+00:00:11,600 --> 00:00:11,940
+tissue healing and reduce <font color="#00ff00">stress,</font>
+
+41
+00:00:12,260 --> 00:00:12,520
+<font color="#00ff00">both</font> in cats and humans.
+
+42
+00:00:12,520 --> 00:00:12,720
+both <font color="#00ff00">in</font> cats and humans.
+
+43
+00:00:12,720 --> 00:00:12,960
+both in <font color="#00ff00">cats</font> and humans.
+
+44
+00:00:12,960 --> 00:00:13,260
+both in cats <font color="#00ff00">and</font> humans.
+
+45
+00:00:13,260 --> 00:00:13,560
+both in cats and <font color="#00ff00">humans.</font>
+
+46
+00:00:14,540 --> 00:00:14,660
+<font color="#00ff00">Cats</font> usually purr when they are relaxed,
+
+47
+00:00:14,660 --> 00:00:15,080
+Cats <font color="#00ff00">usually</font> purr when they are relaxed,
+
+48
+00:00:15,080 --> 00:00:15,380
+Cats usually <font color="#00ff00">purr</font> when they are relaxed,
+
+49
+00:00:15,380 --> 00:00:15,540
+Cats usually purr <font color="#00ff00">when</font> they are relaxed,
+
+50
+00:00:15,540 --> 00:00:15,680
+Cats usually purr when <font color="#00ff00">they</font> are relaxed,
+
+51
+00:00:15,680 --> 00:00:15,760
+Cats usually purr when they <font color="#00ff00">are</font> relaxed,
+
+52
+00:00:15,760 --> 00:00:16,120
+Cats usually purr when they are <font color="#00ff00">relaxed,</font>
+
+53
+00:00:16,560 --> 00:00:16,640
+<font color="#00ff00">but</font> they also purr
+
+54
+00:00:16,640 --> 00:00:16,760
+but <font color="#00ff00">they</font> also purr
+
+55
+00:00:16,760 --> 00:00:17,060
+but they <font color="#00ff00">also</font> purr
+
+56
+00:00:17,060 --> 00:00:17,340
+but they also <font color="#00ff00">purr</font>
+
+57
+00:00:17,340 --> 00:00:17,460
+<font color="#00ff00">when</font> injured or scared.
+
+58
+00:00:17,460 --> 00:00:17,740
+when <font color="#00ff00">injured</font> or scared.
+
+59
+00:00:17,740 --> 00:00:17,980
+when injured <font color="#00ff00">or</font> scared.
+
+60
+00:00:17,980 --> 00:00:18,300
+when injured or <font color="#00ff00">scared.</font>
+
+61
+00:00:18,880 --> 00:00:18,960
+<font color="#00ff00">It</font> helps calm their body
+
+62
+00:00:18,960 --> 00:00:19,140
+It <font color="#00ff00">helps</font> calm their body
+
+63
+00:00:19,140 --> 00:00:19,380
+It helps <font color="#00ff00">calm</font> their body
+
+64
+00:00:19,380 --> 00:00:19,540
+It helps calm <font color="#00ff00">their</font> body
+
+65
+00:00:19,540 --> 00:00:19,780
+It helps calm their <font color="#00ff00">body</font>
+
+66
+00:00:19,780 --> 00:00:19,980
+<font color="#00ff00">and</font> may speed up recovery.
+
+67
+00:00:19,980 --> 00:00:20,120
+and <font color="#00ff00">may</font> speed up recovery.
+
+68
+00:00:20,120 --> 00:00:20,380
+and may <font color="#00ff00">speed</font> up recovery.
+
+69
+00:00:20,380 --> 00:00:20,520
+and may speed <font color="#00ff00">up</font> recovery.
+
+70
+00:00:20,520 --> 00:00:20,880
+and may speed up <font color="#00ff00">recovery.</font>
+
+71
+00:00:21,440 --> 00:00:21,560
+<font color="#00ff00">Some</font> scientists even believe
+
+72
+00:00:21,560 --> 00:00:22,000
+Some <font color="#00ff00">scientists</font> even believe
+
+73
+00:00:22,000 --> 00:00:22,380
+Some scientists <font color="#00ff00">even</font> believe
+
+74
+00:00:22,380 --> 00:00:22,680
+Some scientists even <font color="#00ff00">believe</font>
+
+75
+00:00:22,680 --> 00:00:23,060
+<font color="#00ff00">purring</font> helps maintain strong bones.
+
+76
+00:00:23,060 --> 00:00:23,360
+purring <font color="#00ff00">helps</font> maintain strong bones.
+
+77
+00:00:23,360 --> 00:00:23,800
+purring helps <font color="#00ff00">maintain</font> strong bones.
+
+78
+00:00:23,800 --> 00:00:24,160
+purring helps maintain <font color="#00ff00">strong</font> bones.
+
+79
+00:00:24,160 --> 00:00:24,400
+purring helps maintain strong <font color="#00ff00">bones.</font>
+
+80
+00:00:25,360 --> 00:00:25,520
+<font color="#00ff00">So</font> when your cat curls
+
+81
+00:00:25,520 --> 00:00:25,660
+So <font color="#00ff00">when</font> your cat curls
+
+82
+00:00:25,660 --> 00:00:25,740
+So when <font color="#00ff00">your</font> cat curls
+
+83
+00:00:25,740 --> 00:00:25,940
+So when your <font color="#00ff00">cat</font> curls
+
+84
+00:00:25,940 --> 00:00:26,280
+So when your cat <font color="#00ff00">curls</font>
+
+85
+00:00:26,280 --> 00:00:26,440
+<font color="#00ff00">up</font> and purrs beside you,
+
+86
+00:00:26,440 --> 00:00:26,580
+up <font color="#00ff00">and</font> purrs beside you,
+
+87
+00:00:26,580 --> 00:00:26,860
+up and <font color="#00ff00">purrs</font> beside you,
+
+88
+00:00:26,860 --> 00:00:27,120
+up and purrs <font color="#00ff00">beside</font> you,
+
+89
+00:00:27,120 --> 00:00:27,300
+up and purrs beside <font color="#00ff00">you,</font>
+
+90
+00:00:27,600 --> 00:00:27,700
+<font color="#00ff00">it</font> is creating tiny sound waves that
+
+91
+00:00:27,700 --> 00:00:27,820
+it <font color="#00ff00">is</font> creating tiny sound waves that
+
+92
+00:00:27,820 --> 00:00:28,160
+it is <font color="#00ff00">creating</font> tiny sound waves that
+
+93
+00:00:28,160 --> 00:00:28,540
+it is creating <font color="#00ff00">tiny</font> sound waves that
+
+94
+00:00:28,540 --> 00:00:28,840
+it is creating tiny <font color="#00ff00">sound</font> waves that
+
+95
+00:00:28,840 --> 00:00:29,120
+it is creating tiny sound <font color="#00ff00">waves</font> that
+
+96
+00:00:29,120 --> 00:00:29,400
+it is creating tiny sound waves <font color="#00ff00">that</font>
+
+97
+00:00:29,400 --> 00:00:29,500
+<font color="#00ff00">can</font> help both of you feel better.
+
+98
+00:00:29,500 --> 00:00:29,680
+can <font color="#00ff00">help</font> both of you feel better.
+
+99
+00:00:29,680 --> 00:00:29,920
+can help <font color="#00ff00">both</font> of you feel better.
+
+100
+00:00:29,920 --> 00:00:30,040
+can help both <font color="#00ff00">of</font> you feel better.
+
+101
+00:00:30,040 --> 00:00:30,160
+can help both of <font color="#00ff00">you</font> feel better.
+
+102
+00:00:30,160 --> 00:00:30,280
+can help both of you <font color="#00ff00">feel</font> better.
+
+103
+00:00:30,280 --> 00:00:30,520
+can help both of you feel <font color="#00ff00">better.</font>
+
+104
+00:00:31,100 --> 00:00:31,200
+<font color="#00ff00">And</font> did you know that?
+
+105
+00:00:31,200 --> 00:00:31,300
+And <font color="#00ff00">did</font> you know that?
+
+106
+00:00:31,300 --> 00:00:31,440
+And did <font color="#00ff00">you</font> know that?
+
+107
+00:00:31,440 --> 00:00:31,600
+And did you <font color="#00ff00">know</font> that?
+
+108
+00:00:31,600 --> 00:00:31,950
+And did you know <font color="#00ff00">that?</font>

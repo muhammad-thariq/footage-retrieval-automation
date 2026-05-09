@@ -14,10 +14,10 @@ INPUT_FILE = Path("input.txt")
 OUTPUT_WAV = Path("heart_all.wav")
 LANG = "a"           # American English
 VOICE = "af_heart"   # heart voice
-SPEED = 1
+SPEED = 1.25
 SR = 24000
-SILENCE_MS = 15     # gap between synthesized chunks
 MAX_LEN = 240        # ~chars per chunk; lower if you still see truncation
+SILENCE_MS = 0     # gap between synthesized chunks
 
 # Split after ., !, ?, or … when followed by whitespace.
 # Punctuation is kept; we don't touch hyphens, commas, etc.
@@ -66,7 +66,6 @@ def main():
         print("CUDA device:", torch.cuda.get_device_name(0))
 
     pipe = KPipeline(lang_code=LANG)
-    silence = np.zeros(int(round(SR * (SILENCE_MS / 1000.0))), dtype=np.float32)
     combined = np.zeros(0, dtype=np.float32)
 
     for i, chunk in enumerate(chunks, start=1):
@@ -81,7 +80,9 @@ def main():
             continue
 
         chunk_audio = np.concatenate(parts)
-        combined = chunk_audio if combined.size == 0 else np.concatenate([combined, silence, chunk_audio])
+        
+        # Concatenate directly without adding a silence array
+        combined = chunk_audio if combined.size == 0 else np.concatenate([combined, chunk_audio])
 
     if combined.size == 0:
         raise RuntimeError("No audio was generated.")

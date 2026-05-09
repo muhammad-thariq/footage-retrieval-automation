@@ -1,0 +1,291 @@
+1
+00:00:00,300 --> 00:00:00,420
+<font color="#00ff00">Cat</font> usually hates water,
+
+2
+00:00:00,420 --> 00:00:00,880
+Cat <font color="#00ff00">usually</font> hates water,
+
+3
+00:00:00,880 --> 00:00:01,160
+Cat usually <font color="#00ff00">hates</font> water,
+
+4
+00:00:01,160 --> 00:00:01,620
+Cat usually hates <font color="#00ff00">water,</font>
+
+5
+00:00:01,800 --> 00:00:01,860
+<font color="#00ff00">but</font> not because it is afraid.
+
+6
+00:00:01,860 --> 00:00:02,040
+but <font color="#00ff00">not</font> because it is afraid.
+
+7
+00:00:02,040 --> 00:00:02,340
+but not <font color="#00ff00">because</font> it is afraid.
+
+8
+00:00:02,340 --> 00:00:02,500
+but not because <font color="#00ff00">it</font> is afraid.
+
+9
+00:00:02,500 --> 00:00:02,620
+but not because it <font color="#00ff00">is</font> afraid.
+
+10
+00:00:02,620 --> 00:00:02,920
+but not because it is <font color="#00ff00">afraid.</font>
+
+11
+00:00:03,660 --> 00:00:03,860
+<font color="#00ff00">Their</font> fur is designed to trap warmth,
+
+12
+00:00:03,860 --> 00:00:04,100
+Their <font color="#00ff00">fur</font> is designed to trap warmth,
+
+13
+00:00:04,100 --> 00:00:04,320
+Their fur <font color="#00ff00">is</font> designed to trap warmth,
+
+14
+00:00:04,320 --> 00:00:04,660
+Their fur is <font color="#00ff00">designed</font> to trap warmth,
+
+15
+00:00:04,660 --> 00:00:04,880
+Their fur is designed <font color="#00ff00">to</font> trap warmth,
+
+16
+00:00:04,880 --> 00:00:05,100
+Their fur is designed to <font color="#00ff00">trap</font> warmth,
+
+17
+00:00:05,100 --> 00:00:05,460
+Their fur is designed to trap <font color="#00ff00">warmth,</font>
+
+18
+00:00:05,780 --> 00:00:05,980
+<font color="#00ff00">not</font> handle soaking.
+
+19
+00:00:05,980 --> 00:00:06,360
+not <font color="#00ff00">handle</font> soaking.
+
+20
+00:00:06,360 --> 00:00:06,740
+not handle <font color="#00ff00">soaking.</font>
+
+21
+00:00:07,420 --> 00:00:07,580
+<font color="#00ff00">When</font> it gets wet,
+
+22
+00:00:07,580 --> 00:00:07,680
+When <font color="#00ff00">it</font> gets wet,
+
+23
+00:00:07,680 --> 00:00:07,820
+When it <font color="#00ff00">gets</font> wet,
+
+24
+00:00:07,820 --> 00:00:08,120
+When it gets <font color="#00ff00">wet,</font>
+
+25
+00:00:08,440 --> 00:00:08,640
+<font color="#00ff00">it</font> feels heavy and cold,
+
+26
+00:00:08,640 --> 00:00:08,860
+it <font color="#00ff00">feels</font> heavy and cold,
+
+27
+00:00:08,860 --> 00:00:09,200
+it feels <font color="#00ff00">heavy</font> and cold,
+
+28
+00:00:09,200 --> 00:00:09,440
+it feels heavy <font color="#00ff00">and</font> cold,
+
+29
+00:00:09,440 --> 00:00:09,800
+it feels heavy and <font color="#00ff00">cold,</font>
+
+30
+00:00:10,140 --> 00:00:10,360
+<font color="#00ff00">making</font> them uncomfortable.
+
+31
+00:00:10,360 --> 00:00:10,540
+making <font color="#00ff00">them</font> uncomfortable.
+
+32
+00:00:10,540 --> 00:00:11,040
+making them <font color="#00ff00">uncomfortable.</font>
+
+33
+00:00:12,360 --> 00:00:12,480
+<font color="#00ff00">Some</font> breeds like the Turkish
+
+34
+00:00:12,480 --> 00:00:12,800
+Some <font color="#00ff00">breeds</font> like the Turkish
+
+35
+00:00:12,800 --> 00:00:13,120
+Some breeds <font color="#00ff00">like</font> the Turkish
+
+36
+00:00:13,120 --> 00:00:13,280
+Some breeds like <font color="#00ff00">the</font> Turkish
+
+37
+00:00:13,280 --> 00:00:13,560
+Some breeds like the <font color="#00ff00">Turkish</font>
+
+38
+00:00:13,580 --> 00:00:13,880
+<font color="#00ff00">fan</font> actually enjoy swimming,
+
+39
+00:00:13,880 --> 00:00:14,360
+fan <font color="#00ff00">actually</font> enjoy swimming,
+
+40
+00:00:14,360 --> 00:00:14,760
+fan actually <font color="#00ff00">enjoy</font> swimming,
+
+41
+00:00:14,760 --> 00:00:15,240
+fan actually enjoy <font color="#00ff00">swimming,</font>
+
+42
+00:00:15,740 --> 00:00:15,840
+<font color="#00ff00">but</font> most cats prefer staying dry.
+
+43
+00:00:15,840 --> 00:00:16,060
+but <font color="#00ff00">most</font> cats prefer staying dry.
+
+44
+00:00:16,060 --> 00:00:16,340
+but most <font color="#00ff00">cats</font> prefer staying dry.
+
+45
+00:00:16,340 --> 00:00:16,660
+but most cats <font color="#00ff00">prefer</font> staying dry.
+
+46
+00:00:16,660 --> 00:00:17,180
+but most cats prefer <font color="#00ff00">staying</font> dry.
+
+47
+00:00:17,180 --> 00:00:17,500
+but most cats prefer staying <font color="#00ff00">dry.</font>
+
+48
+00:00:18,120 --> 00:00:18,300
+<font color="#00ff00">So</font> when your cat avoids the bath,
+
+49
+00:00:18,300 --> 00:00:18,420
+So <font color="#00ff00">when</font> your cat avoids the bath,
+
+50
+00:00:18,420 --> 00:00:18,540
+So when <font color="#00ff00">your</font> cat avoids the bath,
+
+51
+00:00:18,540 --> 00:00:18,800
+So when your <font color="#00ff00">cat</font> avoids the bath,
+
+52
+00:00:18,800 --> 00:00:19,220
+So when your cat <font color="#00ff00">avoids</font> the bath,
+
+53
+00:00:19,220 --> 00:00:19,380
+So when your cat avoids <font color="#00ff00">the</font> bath,
+
+54
+00:00:19,380 --> 00:00:19,560
+So when your cat avoids the <font color="#00ff00">bath,</font>
+
+55
+00:00:19,920 --> 00:00:20,000
+<font color="#00ff00">it</font> is not stubbornness.
+
+56
+00:00:20,000 --> 00:00:20,140
+it <font color="#00ff00">is</font> not stubbornness.
+
+57
+00:00:20,140 --> 00:00:20,320
+it is <font color="#00ff00">not</font> stubbornness.
+
+58
+00:00:20,320 --> 00:00:20,770
+it is not <font color="#00ff00">stubbornness.</font>
+
+59
+00:00:21,500 --> 00:00:21,600
+<font color="#00ff00">It</font> is just nature's way of
+
+60
+00:00:21,600 --> 00:00:21,740
+It <font color="#00ff00">is</font> just nature's way of
+
+61
+00:00:21,740 --> 00:00:21,900
+It is <font color="#00ff00">just</font> nature's way of
+
+62
+00:00:21,900 --> 00:00:22,520
+It is just <font color="#00ff00">nature's</font> way of
+
+63
+00:00:22,520 --> 00:00:22,660
+It is just nature's <font color="#00ff00">way</font> of
+
+64
+00:00:22,660 --> 00:00:22,800
+It is just nature's way <font color="#00ff00">of</font>
+
+65
+00:00:22,800 --> 00:00:23,060
+<font color="#00ff00">keeping</font> them comfortable.
+
+66
+00:00:23,060 --> 00:00:23,080
+keeping them comfortable.
+
+67
+00:00:23,080 --> 00:00:23,260
+keeping <font color="#00ff00">them</font> comfortable.
+
+68
+00:00:23,260 --> 00:00:23,580
+keeping them <font color="#00ff00">comfortable.</font>
+
+69
+00:00:24,340 --> 00:00:24,440
+<font color="#00ff00">And</font> did you know that?
+
+70
+00:00:24,440 --> 00:00:24,560
+And <font color="#00ff00">did</font> you know that?
+
+71
+00:00:24,560 --> 00:00:24,680
+And did <font color="#00ff00">you</font> know that?
+
+72
+00:00:24,680 --> 00:00:24,860
+And did you <font color="#00ff00">know</font> that?
+
+73
+00:00:24,860 --> 00:00:25,160
+And did you know <font color="#00ff00">that?</font>

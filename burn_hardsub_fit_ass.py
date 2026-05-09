@@ -148,9 +148,11 @@ def rgb_to_ass(hexcode: str, order: str = "bgr", with_alpha: bool = True) -> str
 
 def main():
     ap = argparse.ArgumentParser(description="Burn SRT into MP4 with guaranteed-fit hardsubs (HTML-safe)")
-    ap.add_argument("--video_in", type=str, default="output_9x16_letterbox.mp4")
+    ap.add_argument("--video_in", type=str, default="heart_all_visual.mp4")
     ap.add_argument("--srt_in",   type=str, default="heart_all.srt")
-    ap.add_argument("--video_out", type=str, default="heart_all_visual_hardsub.mp4")
+    
+    # --- MODIFIED: Changed default output from heart_all_visual_hardsub.mp4 to heart_all_visual_output.mp4 ---
+    ap.add_argument("--video_out", type=str, default="heart_all_visual_output.mp4")
 
     # appearance & fit
     ap.add_argument("--font", type=str, default="Arial")
@@ -308,8 +310,5 @@ def main():
         #     pass
         pass
 
-
 if __name__ == "__main__":
     main()
-
-# flags

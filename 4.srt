@@ -1,0 +1,391 @@
+1
+00:00:00,260 --> 00:00:00,360
+<font color="#00ff00">Cat</font> is a perfectionist
+
+2
+00:00:00,360 --> 00:00:00,560
+Cat <font color="#00ff00">is</font> a perfectionist
+
+3
+00:00:00,560 --> 00:00:00,660
+Cat is <font color="#00ff00">a</font> perfectionist
+
+4
+00:00:00,660 --> 00:00:01,240
+Cat is a <font color="#00ff00">perfectionist</font>
+
+5
+00:00:01,260 --> 00:00:01,360
+<font color="#00ff00">when</font> it comes to jumping.
+
+6
+00:00:01,360 --> 00:00:01,460
+when <font color="#00ff00">it</font> comes to jumping.
+
+7
+00:00:01,460 --> 00:00:01,540
+when it comes to jumping.
+
+8
+00:00:01,540 --> 00:00:01,640
+when it <font color="#00ff00">comes</font> to jumping.
+
+9
+00:00:01,640 --> 00:00:01,840
+when it comes <font color="#00ff00">to</font> jumping.
+
+10
+00:00:01,840 --> 00:00:02,080
+when it comes to <font color="#00ff00">jumping.</font>
+
+11
+00:00:02,660 --> 00:00:02,780
+<font color="#00ff00">Before</font> they leap,
+
+12
+00:00:02,780 --> 00:00:02,980
+Before <font color="#00ff00">they</font> leap,
+
+13
+00:00:02,980 --> 00:00:03,140
+Before they <font color="#00ff00">leap,</font>
+
+14
+00:00:03,500 --> 00:00:03,620
+<font color="#00ff00">cat</font> stop and calculate everything,
+
+15
+00:00:03,620 --> 00:00:03,940
+cat <font color="#00ff00">stop</font> and calculate everything,
+
+16
+00:00:03,940 --> 00:00:04,180
+cat stop <font color="#00ff00">and</font> calculate everything,
+
+17
+00:00:04,180 --> 00:00:04,600
+cat stop and <font color="#00ff00">calculate</font> everything,
+
+18
+00:00:04,600 --> 00:00:05,160
+cat stop and calculate <font color="#00ff00">everything,</font>
+
+19
+00:00:05,480 --> 00:00:05,580
+<font color="#00ff00">the</font> distance,
+
+20
+00:00:05,580 --> 00:00:05,840
+the <font color="#00ff00">distance,</font>
+
+21
+00:00:06,200 --> 00:00:06,360
+<font color="#00ff00">the</font> height,
+
+22
+00:00:06,360 --> 00:00:06,500
+the <font color="#00ff00">height,</font>
+
+23
+00:00:06,760 --> 00:00:07,120
+<font color="#00ff00">even</font> how soft the landing spot is.
+
+24
+00:00:07,120 --> 00:00:07,320
+even <font color="#00ff00">how</font> soft the landing spot is.
+
+25
+00:00:07,320 --> 00:00:07,560
+even how <font color="#00ff00">soft</font> the landing spot is.
+
+26
+00:00:07,560 --> 00:00:07,800
+even how soft <font color="#00ff00">the</font> landing spot is.
+
+27
+00:00:07,800 --> 00:00:08,040
+even how soft the <font color="#00ff00">landing</font> spot is.
+
+28
+00:00:08,040 --> 00:00:08,360
+even how soft the landing <font color="#00ff00">spot</font> is.
+
+29
+00:00:08,360 --> 00:00:08,660
+even how soft the landing spot <font color="#00ff00">is.</font>
+
+30
+00:00:09,020 --> 00:00:09,240
+<font color="#00ff00">Their</font> eyes and whiskers help
+
+31
+00:00:09,240 --> 00:00:09,500
+Their <font color="#00ff00">eyes</font> and whiskers help
+
+32
+00:00:09,500 --> 00:00:09,720
+Their eyes <font color="#00ff00">and</font> whiskers help
+
+33
+00:00:09,720 --> 00:00:10,060
+Their eyes and <font color="#00ff00">whiskers</font> help
+
+34
+00:00:10,060 --> 00:00:10,300
+Their eyes and whiskers <font color="#00ff00">help</font>
+
+35
+00:00:10,300 --> 00:00:10,480
+<font color="#00ff00">them</font> measure space perfectly.
+
+36
+00:00:10,480 --> 00:00:10,760
+them <font color="#00ff00">measure</font> space perfectly.
+
+37
+00:00:10,760 --> 00:00:11,060
+them measure <font color="#00ff00">space</font> perfectly.
+
+38
+00:00:11,060 --> 00:00:11,500
+them measure space <font color="#00ff00">perfectly.</font>
+
+39
+00:00:12,480 --> 00:00:12,620
+<font color="#00ff00">Once</font> they're ready,
+
+40
+00:00:12,620 --> 00:00:12,820
+Once <font color="#00ff00">they're</font> ready,
+
+41
+00:00:12,820 --> 00:00:13,060
+Once they're <font color="#00ff00">ready,</font>
+
+42
+00:00:13,320 --> 00:00:13,500
+<font color="#00ff00">it's</font> one clean motion
+
+43
+00:00:13,500 --> 00:00:13,660
+it's <font color="#00ff00">one</font> clean motion
+
+44
+00:00:13,660 --> 00:00:13,920
+it's one <font color="#00ff00">clean</font> motion
+
+45
+00:00:13,920 --> 00:00:14,260
+it's one clean <font color="#00ff00">motion</font>
+
+46
+00:00:14,260 --> 00:00:14,500
+<font color="#00ff00">from</font> floor to target.
+
+47
+00:00:14,500 --> 00:00:14,800
+from <font color="#00ff00">floor</font> to target.
+
+48
+00:00:14,800 --> 00:00:15,000
+from floor <font color="#00ff00">to</font> target.
+
+49
+00:00:15,000 --> 00:00:15,320
+from floor to <font color="#00ff00">target.</font>
+
+50
+00:00:15,880 --> 00:00:16,020
+<font color="#00ff00">No</font> hesitation, no mistakes.
+
+51
+00:00:16,020 --> 00:00:16,400
+No <font color="#00ff00">hesitation,</font> no mistakes.
+
+52
+00:00:16,400 --> 00:00:16,880
+No hesitation, no mistakes.
+
+53
+00:00:16,880 --> 00:00:17,000
+No hesitation, <font color="#00ff00">no</font> mistakes.
+
+54
+00:00:17,000 --> 00:00:17,300
+No hesitation, no <font color="#00ff00">mistakes.</font>
+
+55
+00:00:17,920 --> 00:00:18,120
+<font color="#00ff00">That's</font> why they can land on
+
+56
+00:00:18,120 --> 00:00:18,240
+That's <font color="#00ff00">why</font> they can land on
+
+57
+00:00:18,240 --> 00:00:18,400
+That's why <font color="#00ff00">they</font> can land on
+
+58
+00:00:18,400 --> 00:00:18,560
+That's why they <font color="#00ff00">can</font> land on
+
+59
+00:00:18,560 --> 00:00:18,780
+That's why they can <font color="#00ff00">land</font> on
+
+60
+00:00:18,780 --> 00:00:18,980
+That's why they can land <font color="#00ff00">on</font>
+
+61
+00:00:18,980 --> 00:00:19,220
+<font color="#00ff00">narrow</font> ledges like it's nothing.
+
+62
+00:00:19,220 --> 00:00:19,560
+narrow <font color="#00ff00">ledges</font> like it's nothing.
+
+63
+00:00:19,560 --> 00:00:19,760
+narrow ledges <font color="#00ff00">like</font> it's nothing.
+
+64
+00:00:19,760 --> 00:00:19,900
+narrow ledges like it's nothing.
+
+65
+00:00:19,900 --> 00:00:20,000
+narrow ledges like <font color="#00ff00">it's</font> nothing.
+
+66
+00:00:20,000 --> 00:00:20,220
+narrow ledges like it's <font color="#00ff00">nothing.</font>
+
+67
+00:00:20,740 --> 00:00:20,900
+<font color="#00ff00">Every</font> jump is planned
+
+68
+00:00:20,900 --> 00:00:21,160
+Every <font color="#00ff00">jump</font> is planned
+
+69
+00:00:21,160 --> 00:00:21,360
+Every jump <font color="#00ff00">is</font> planned
+
+70
+00:00:21,360 --> 00:00:21,580
+Every jump is <font color="#00ff00">planned</font>
+
+71
+00:00:21,580 --> 00:00:21,880
+<font color="#00ff00">down</font> to the millimeter.
+
+72
+00:00:21,880 --> 00:00:22,040
+down <font color="#00ff00">to</font> the millimeter.
+
+73
+00:00:22,040 --> 00:00:22,120
+down to <font color="#00ff00">the</font> millimeter.
+
+74
+00:00:22,120 --> 00:00:22,420
+down to the <font color="#00ff00">millimeter.</font>
+
+75
+00:00:23,420 --> 00:00:23,520
+<font color="#00ff00">So</font> if you ever see your
+
+76
+00:00:23,520 --> 00:00:23,620
+So <font color="#00ff00">if</font> you ever see your
+
+77
+00:00:23,620 --> 00:00:23,700
+So if <font color="#00ff00">you</font> ever see your
+
+78
+00:00:23,700 --> 00:00:23,900
+So if you <font color="#00ff00">ever</font> see your
+
+79
+00:00:23,900 --> 00:00:24,100
+So if you ever <font color="#00ff00">see</font> your
+
+80
+00:00:24,100 --> 00:00:24,220
+So if you ever see <font color="#00ff00">your</font>
+
+81
+00:00:24,220 --> 00:00:24,380
+<font color="#00ff00">cat</font> pause before jumping,
+
+82
+00:00:24,380 --> 00:00:24,600
+cat <font color="#00ff00">pause</font> before jumping,
+
+83
+00:00:24,600 --> 00:00:24,900
+cat pause <font color="#00ff00">before</font> jumping,
+
+84
+00:00:24,900 --> 00:00:25,260
+cat pause before <font color="#00ff00">jumping,</font>
+
+85
+00:00:25,400 --> 00:00:25,480
+<font color="#00ff00">they're</font> not scared.
+
+86
+00:00:25,480 --> 00:00:25,620
+they're <font color="#00ff00">not</font> scared.
+
+87
+00:00:25,620 --> 00:00:25,920
+they're not <font color="#00ff00">scared.</font>
+
+88
+00:00:26,380 --> 00:00:26,480
+<font color="#00ff00">They're</font> just doing the math first.
+
+89
+00:00:26,480 --> 00:00:26,620
+They're <font color="#00ff00">just</font> doing the math first.
+
+90
+00:00:26,620 --> 00:00:26,860
+They're just <font color="#00ff00">doing</font> the math first.
+
+91
+00:00:26,860 --> 00:00:27,000
+They're just doing <font color="#00ff00">the</font> math first.
+
+92
+00:00:27,000 --> 00:00:27,220
+They're just doing the <font color="#00ff00">math</font> first.
+
+93
+00:00:27,220 --> 00:00:27,480
+They're just doing the math <font color="#00ff00">first.</font>
+
+94
+00:00:27,880 --> 00:00:27,980
+<font color="#00ff00">And</font> did you know that?
+
+95
+00:00:27,980 --> 00:00:28,080
+And <font color="#00ff00">did</font> you know that?
+
+96
+00:00:28,080 --> 00:00:28,200
+And did <font color="#00ff00">you</font> know that?
+
+97
+00:00:28,200 --> 00:00:28,340
+And did you <font color="#00ff00">know</font> that?
+
+98
+00:00:28,340 --> 00:00:28,560
+And did you know <font color="#00ff00">that?</font>
