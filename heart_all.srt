@@ -223,7 +223,7 @@ calm themselves <font color="#ff00ffff">right</font> down.
 calm themselves right <font color="#ff00ffff">down.</font>
 
 57
-00:00:16,880 --> 00:00:16,940
+00:00:16,860 --> 00:00:16,940
 <font color="#ff00ffff">It</font> is like they
 
 58
@@ -264,27 +264,27 @@ doctor <font color="#ff00ffff">keeping</font>
 
 67
 00:00:18,940 --> 00:00:19,160
-<font color="#ff00ffff">them</font> totally healthy.
+<font color="#ff00ffff">them</font> totally healthy,
 
 68
 00:00:19,160 --> 00:00:19,520
-them <font color="#ff00ffff">totally</font> healthy.
+them <font color="#ff00ffff">totally</font> healthy,
 
 69
 00:00:19,520 --> 00:00:19,880
-them totally <font color="#ff00ffff">healthy.</font>
+them totally <font color="#ff00ffff">healthy,</font>
 
 70
 00:00:20,400 --> 00:00:20,500
-<font color="#ff00ffff">And</font> trust me
+<font color="#ff00ffff">and</font> trust me
 
 71
 00:00:20,500 --> 00:00:20,720
-And <font color="#ff00ffff">trust</font> me
+and <font color="#ff00ffff">trust</font> me
 
 72
 00:00:20,720 --> 00:00:20,920
-And trust <font color="#ff00ffff">me</font>
+and trust <font color="#ff00ffff">me</font>
 
 73
 00:00:20,920 --> 00:00:21,040

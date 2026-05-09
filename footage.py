@@ -455,6 +455,7 @@ def build_and_run_ffmpeg(
     durs: List[float],
     mute_flags: List[bool],
     has_audio_flags: List[bool],
+    sfx_flags: List[Optional[str]],
     audio_wav: Path,
     out_video: Path,
     out_size: str,
@@ -469,9 +470,13 @@ def build_and_run_ffmpeg(
     if not m: raise ValueError(f"Invalid --size '{out_size}', expected like 1080x1920")
     W, H = int(m.group(1)), int(m.group(2))
 
+    extra_inputs = [s for s in sfx_flags if s is not None]
+
     args = ["ffmpeg", "-y"]
     for p in clips: args += ["-i", str(p)]
     args += ["-i", str(audio_wav)]
+    for sfx in extra_inputs:
+        args += ["-stream_loop", "-1", "-i", str(sfx)]
 
     a_dur = audio_duration(audio_wav)
     vol_lin = 10.0**(source_db/20.0)
@@ -479,7 +484,8 @@ def build_and_run_ffmpeg(
     fl = []
     v_labels = []
     a_labels = []
-    for i, (start, dur, mute, has_a) in enumerate(zip(starts, durs, mute_flags, has_audio_flags)):
+    sfx_counter = 0
+    for i, (start, dur, mute, has_a, sfx) in enumerate(zip(starts, durs, mute_flags, has_audio_flags, sfx_flags)):
         v_chain = None
         if fit_mode == "contain":
             v_chain = (
@@ -509,7 +515,18 @@ def build_and_run_ffmpeg(
             )
         fl.append(v_chain); v_labels.append(f"[v{i}]")
 
-        if has_a:
+        if sfx is not None:
+            sfx_idx = len(clips) + 1 + sfx_counter
+            sfx_counter += 1
+            a = (
+                f"[{sfx_idx}:a]"
+                f"atrim=start=0:end={dur:.3f},"
+                f"asetpts=PTS-STARTPTS,"
+                f"aformat=sample_fmts=fltp:channel_layouts=stereo,"
+                f"aresample=48000[a{i}]"
+            )
+            fl.append(a)
+        elif has_a:
             a = (
                 f"[{i}:a]"
                 f"atrim=start={start:.3f}:end={(start+dur):.3f},"
@@ -660,6 +677,7 @@ def main():
     starts: List[Optional[float]] = [None]*n
     mutes:  List[Optional[bool]]  = [None]*n
     has_a:  List[Optional[bool]]  = [None]*n
+    sfxs:   List[Optional[str]]   = [None]*n
 
     used_idx:set[int]=set()
     counters_before = dict(counters)
@@ -748,11 +766,13 @@ def main():
             starts[0] = round(start_first, 3)
             mutes[0]  = fpair.stem.endswith("_m")
             has_a[0]  = has_audio_stream(fpair)
+            sfxs[0]   = "sfx/purr.wav" if fpair.stem.endswith("-pr") else ("sfx/meow.wav" if fpair.stem.endswith("-mw") else None)
 
             chosen[-1] = fpair
             starts[-1] = round(start_last, 3)
             mutes[-1]  = fpair.stem.endswith("_m")
             has_a[-1]  = has_audio_stream(fpair)
+            sfxs[-1]   = "sfx/purr.wav" if fpair.stem.endswith("-pr") else ("sfx/meow.wav" if fpair.stem.endswith("-mw") else None)
 
             # counters: used twice
             counters[fpair.name] = counters.get(fpair.name, 0) + 2
@@ -870,6 +890,7 @@ def main():
 
         mutes[i]=(f.stem.endswith("_m"))
         has_a[i]=has_audio_stream(f)
+        sfxs[i]="sfx/purr.wav" if f.stem.endswith("-pr") else ("sfx/meow.wav" if f.stem.endswith("-mw") else None)
 
         if args.debug:
             print(f"[apply] {f.name}: counter {before} -> {after} (+1)")
@@ -880,6 +901,7 @@ def main():
     final_starts: List[float] = [float(s) for s in starts]  # type: ignore
     final_mutes:  List[bool]  = [bool(m) for m in mutes]    # type: ignore
     final_has_a:  List[bool]  = [bool(a) for a in has_a]    # type: ignore
+    final_sfxs:   List[Optional[str]] = [s for s in sfxs]
 
     # persist counters
     save_counters(counters_path, counters)
@@ -906,6 +928,7 @@ def main():
         durs=per_clip,
         mute_flags=final_mutes,
         has_audio_flags=final_has_a,
+        sfx_flags=final_sfxs,
         audio_wav=audio_wav,
         out_video=out_video,
         out_size=args.size,
