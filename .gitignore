@@ -2,4 +2,7 @@
 /batch_1
 /footage
 *.mp4
+*.mp3
 *.wav
+*.srt
+output.txt

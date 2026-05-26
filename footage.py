@@ -478,6 +478,12 @@ def build_and_run_ffmpeg(
     for sfx in extra_inputs:
         args += ["-stream_loop", "-1", "-i", str(sfx)]
 
+    bell_path = Path("sfx/bell.mp3")
+    bell_idx = None
+    if bell_path.exists():
+        args += ["-i", str(bell_path)]
+        bell_idx = len(clips) + 1 + len(extra_inputs)
+
     a_dur = audio_duration(audio_wav)
     vol_lin = 10.0**(source_db/20.0)
 
@@ -547,11 +553,20 @@ def build_and_run_ffmpeg(
     fl.append(f"{concat_in}concat=n={len(v_labels)}:v=1:a=1[vcat][acat]")
     fl.append(f"[{len(clips)}:a]atrim=0:{a_dur:.3f},asetpts=PTS-STARTPTS[atts]")
 
+    if bell_idx is not None:
+        fl.append(f"[{bell_idx}:a]aformat=sample_fmts=fltp:channel_layouts=stereo,aresample=48000,volume=0.1[bell_a]")
+
     if mix_source:
         fl.append(f"[acat]volume={vol_lin}[a0]")
-        fl.append(f"[a0][atts]amix=inputs=2:normalize=0:dropout_transition=0,atrim=0:{a_dur:.3f},asetpts=PTS-STARTPTS[aout]")
+        if bell_idx is not None:
+            fl.append(f"[a0][atts][bell_a]amix=inputs=3:normalize=0:dropout_transition=0,atrim=0:{a_dur:.3f},asetpts=PTS-STARTPTS[aout]")
+        else:
+            fl.append(f"[a0][atts]amix=inputs=2:normalize=0:dropout_transition=0,atrim=0:{a_dur:.3f},asetpts=PTS-STARTPTS[aout]")
     else:
-        fl.append(f"[atts]anull[aout]")
+        if bell_idx is not None:
+            fl.append(f"[atts][bell_a]amix=inputs=2:normalize=0:dropout_transition=0,atrim=0:{a_dur:.3f},asetpts=PTS-STARTPTS[aout]")
+        else:
+            fl.append(f"[atts]anull[aout]")
 
     fl.append(f"[vcat]setpts=PTS-STARTPTS,trim=duration={a_dur:.3f},fps=30,format=yuv420p,setsar=1[vout]")
 
