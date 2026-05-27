@@ -3,223 +3,736 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PCC — Short-form Video Builder</title>
+<title>Footage Retrieval Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
         colors: {
-          ink: { 950:'#07090d', 900:'#0b0f16', 800:'#111723', 700:'#1a2230', 600:'#243042' },
-          accent: { 400:'#7dd3fc', 500:'#38bdf8', 600:'#0ea5e9' },
-          lime: { 400:'#a3e635' },
-          rose: { 400:'#fb7185' }
-        }
+          surface: {
+            0: 'oklch(0.105 0.003 250)',
+            1: 'oklch(0.155 0.004 250)',
+            2: 'oklch(0.215 0.005 250)',
+            3: 'oklch(0.290 0.006 250)',
+          },
+          line: {
+            soft: 'oklch(0.32 0.006 250)',
+            strong: 'oklch(0.46 0.007 250)',
+          },
+          ink: {
+            1: 'oklch(0.985 0.003 250)',
+            2: 'oklch(0.820 0.004 250)',
+            3: 'oklch(0.620 0.005 250)',
+            4: 'oklch(0.460 0.006 250)',
+          },
+          signal: {
+            DEFAULT: 'oklch(0.985 0.003 250)',
+            soft: 'oklch(0.985 0.003 250 / 0.10)',
+            dim:  'oklch(0.780 0.004 250)',
+          },
+          danger: {
+            DEFAULT: 'oklch(0.62 0.110 28)',
+            soft: 'oklch(0.62 0.110 28 / 0.12)',
+          },
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        },
       }
     }
   }
 </script>
 <style>
-  html,body{background:#07090d;color:#e5e7eb}
-  .glass{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));backdrop-filter: blur(8px)}
-  .hairline{box-shadow: inset 0 0 0 1px rgba(255,255,255,.06)}
-  .ring-soft:focus{outline:none;box-shadow:0 0 0 2px rgba(56,189,248,.35), inset 0 0 0 1px rgba(56,189,248,.55)}
-  .chip{padding:.25rem .55rem;border-radius:.5rem;background:rgba(56,189,248,.08);color:#7dd3fc;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase}
-  .scroll-shadow{mask-image:linear-gradient(180deg, #000 90%, transparent)}
-  details>summary{list-style:none;cursor:pointer}
-  details>summary::-webkit-details-marker{display:none}
-  .pulse-dot{animation: pulse 1.4s ease-in-out infinite}
-  @keyframes pulse {0%,100%{opacity:.35}50%{opacity:1}}
-  .grid-bg{background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0); background-size: 22px 22px}
-  .toggle{height:1.25rem;width:2.25rem;appearance:none;border-radius:9999px;background:#1a2230;position:relative;cursor:pointer;transition:background .15s}
-  .toggle::before{content:"";position:absolute;top:2px;left:2px;height:1rem;width:1rem;border-radius:9999px;background:white;transition:transform .15s}
-  .toggle:checked{background:#38bdf8}
-  .toggle:checked::before{transform:translateX(1rem)}
-  textarea{font-family: ui-monospace, SFMono-Regular, Menlo, monospace}
-  .stage{display:flex;align-items:center;gap:.625rem;padding:.55rem .75rem;border-radius:.625rem;background:#111723;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
-  .stage .dot{width:.55rem;height:.55rem;border-radius:9999px;background:#374151}
-  .stage[data-status="running"] .dot{background:#38bdf8;animation:pulse 1.4s ease-in-out infinite}
-  .stage[data-status="done"] .dot{background:#a3e635}
-  .stage[data-status="error"] .dot{background:#fb7185}
-  .stage[data-status="skipped"] .dot{background:#52525b}
-  .stage .label{flex:1;font-size:.825rem}
-  .stage .meta{font-size:.7rem;color:#9ca3af}
-  .tab-btn{padding:.5rem 1rem;border-radius:.625rem;font-size:.825rem;font-weight:500;color:#9ca3af;transition:background .15s, color .15s}
-  .tab-btn:hover{background:rgba(255,255,255,.04);color:#e5e7eb}
-  .tab-btn[aria-selected="true"]{background:#0ea5e9;color:#07090d;font-weight:600}
-  .panel-desc{font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:1rem}
+  :root {
+    --surface-0: oklch(0.105 0.003 250);
+    --surface-1: oklch(0.155 0.004 250);
+    --surface-2: oklch(0.215 0.005 250);
+    --surface-3: oklch(0.290 0.006 250);
+    --line-soft: oklch(0.32 0.006 250);
+    --line-strong: oklch(0.46 0.007 250);
+    --ink-1: oklch(0.985 0.003 250);
+    --ink-2: oklch(0.820 0.004 250);
+    --ink-3: oklch(0.620 0.005 250);
+    --ink-4: oklch(0.460 0.006 250);
+    --signal: oklch(0.985 0.003 250);
+    --signal-soft: oklch(0.985 0.003 250 / 0.10);
+    --signal-dim: oklch(0.780 0.004 250);
+    --danger: oklch(0.62 0.110 28);
+    --danger-soft: oklch(0.62 0.110 28 / 0.12);
+    /* Status LED palette (state mapping; chrome stays mono) */
+    --led-idle:  oklch(0.62 0.16 250);    /* blue   = IDLE / PENDING */
+    --led-init:  oklch(0.985 0.003 250);  /* white  = INIT (starting)  */
+    --led-run:   oklch(0.84 0.16 95);     /* yellow = RUN / RUNNING    */
+    --led-done:  oklch(0.70 0.18 145);    /* green  = DONE             */
+    --led-error: oklch(0.62 0.18 28);     /* red    = ERROR            */
+    --led-off:   oklch(0.25 0.006 250);   /* black  = OFFLINE / SKIPPED */
+    --led-run-soft: oklch(0.84 0.16 95 / 0.08);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html, body {
+    background: var(--surface-0);
+    color: var(--ink-2);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* [hidden] must beat utility classes like .flex that set display. */
+  [hidden] { display: none !important; }
+
+  /* === Focus ring (signal). Studio-tool ring: thin, bright, never decorative. === */
+  *:focus { outline: none; }
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 1px var(--signal), 0 0 0 3px var(--signal-soft);
+    border-radius: inherit;
+  }
+
+  /* === Selection === */
+  ::selection { background: var(--surface-3); color: var(--ink-1); }
+
+  /* === Label === */
+  .label {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--ink-3);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* === Inputs / selects === */
+  .field {
+    background: var(--surface-1);
+    border: 1px solid var(--line-soft);
+    color: var(--ink-1);
+    border-radius: 3px;
+    padding: 7px 9px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    width: 100%;
+    transition: border-color 160ms var(--ease-out), background 160ms var(--ease-out);
+  }
+  .field::placeholder { color: var(--ink-4); }
+  .field:hover { border-color: var(--line-strong); }
+  .field:focus { border-color: var(--signal); }
+  select.field {
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--ink-3) 50%),
+      linear-gradient(135deg, var(--ink-3) 50%, transparent 50%);
+    background-position: calc(100% - 14px) 50%, calc(100% - 9px) 50%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 26px;
+  }
+
+  /* === Toggle (neutral both states; signal is reserved) === */
+  .toggle {
+    appearance: none;
+    width: 28px;
+    height: 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--line-soft);
+    border-radius: 9999px;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 160ms var(--ease-out), border-color 160ms var(--ease-out);
+  }
+  .toggle::before {
+    content: '';
+    position: absolute;
+    top: 1px; left: 1px;
+    width: 12px; height: 12px;
+    border-radius: 9999px;
+    background: var(--ink-3);
+    transition: transform 220ms var(--ease-out), background 220ms var(--ease-out);
+  }
+  .toggle:hover { border-color: var(--line-strong); }
+  .toggle:checked { background: var(--led-done); border-color: var(--led-done); }
+  .toggle:checked::before { transform: translateX(12px); background: var(--ink-1); }
+  .toggle:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* === Tabs === */
+  .tab-btn {
+    position: relative;
+    background: transparent;
+    border: 0;
+    color: var(--ink-3);
+    padding: 12px 14px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 160ms var(--ease-out);
+  }
+  .tab-btn:hover { color: var(--ink-1); }
+  .tab-btn[aria-selected="true"] { color: var(--ink-1); }
+  .tab-btn[aria-selected="true"]::after {
+    content: '';
+    position: absolute;
+    left: 14px; right: 14px; bottom: -1px;
+    height: 2px;
+    background: var(--signal);
+  }
+
+  /* === Segmented control (Fit) === */
+  .seg {
+    display: inline-flex;
+    background: var(--surface-1);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    padding: 2px;
+  }
+  .seg-btn {
+    background: transparent;
+    border: 0;
+    color: var(--ink-3);
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: color 160ms var(--ease-out), background 160ms var(--ease-out);
+  }
+  .seg-btn:hover { color: var(--ink-1); }
+  .seg-btn.is-active {
+    color: var(--ink-1);
+    background: var(--surface-3);
+  }
+
+  /* === Stage (pipeline row) === */
+  .stage {
+    display: grid;
+    grid-template-columns: 14px 1fr auto 72px;
+    align-items: center;
+    column-gap: 14px;
+    padding: 11px 14px;
+    border-top: 1px solid var(--line-soft);
+    background: transparent;
+    transition: background 220ms var(--ease-out);
+    cursor: default;
+  }
+  .stage:first-child { border-top: 0; }
+  .stage .led {
+    width: 9px; height: 9px;
+    border-radius: 9999px;
+    background: transparent;
+    border: 1.5px solid var(--ink-4);
+    transition: background 200ms var(--ease-out), border-color 200ms var(--ease-out), transform 200ms var(--ease-out);
+    justify-self: center;
+  }
+  .stage .lbl {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 0;
+  }
+  .stage .lbl .src {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--ink-4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .stage .state {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--ink-4);
+    text-align: right;
+  }
+
+  .stage[data-status="pending"] .led { border-color: var(--led-idle); background: transparent; }
+  .stage[data-status="pending"] .lbl { color: var(--ink-2); }
+  .stage[data-status="pending"] .state { color: var(--ink-3); }
+
+  .stage[data-status="running"] {
+    background: var(--led-run-soft);
+  }
+  .stage[data-status="running"] .led {
+    border-color: var(--led-run);
+    background: var(--led-run);
+    animation: led-pulse 1.2s ease-in-out infinite;
+  }
+  .stage[data-status="running"] .lbl { color: var(--ink-1); }
+  .stage[data-status="running"] .lbl .src { color: var(--led-run); }
+  .stage[data-status="running"] .state { color: var(--led-run); font-weight: 500; }
+
+  .stage[data-status="done"] .led { border-color: var(--led-done); background: var(--led-done); }
+  .stage[data-status="done"] .lbl { color: var(--ink-1); }
+  .stage[data-status="done"] .state { color: var(--led-done); }
+
+  .stage[data-status="error"] .led { border-color: var(--led-error); background: var(--led-error); }
+  .stage[data-status="error"] .lbl { color: var(--ink-1); }
+  .stage[data-status="error"] .state { color: var(--led-error); }
+
+  .stage[data-status="skipped"] .led {
+    border: 1.5px solid var(--led-off);
+    background: var(--led-off);
+    position: relative;
+  }
+  .stage[data-status="skipped"] .lbl { color: var(--ink-4); }
+  .stage[data-status="skipped"] .lbl .src { color: var(--ink-4); }
+  .stage[data-status="skipped"] .state { color: var(--ink-4); }
+
+  /* === Tally pill === */
+  .tally {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px 6px 10px;
+    border: 1px solid var(--line-soft);
+    background: var(--surface-1);
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-2);
+    transition: border-color 200ms var(--ease-out), color 200ms var(--ease-out), background 200ms var(--ease-out);
+  }
+  .tally .led {
+    width: 7px; height: 7px; border-radius: 9999px;
+    background: var(--led-idle);
+    transition: background 200ms var(--ease-out);
+  }
+  .tally[data-state="idle"]         .led { background: var(--led-idle); }
+  .tally[data-state="starting"]     .led { background: var(--led-init);  animation: led-pulse 1.2s ease-in-out infinite; }
+  .tally[data-state="running"]      .led { background: var(--led-run);   animation: led-pulse 1.2s ease-in-out infinite; }
+  .tally[data-state="done"]         .led { background: var(--led-done); }
+  .tally[data-state="error"]        .led { background: var(--led-error); }
+  .tally[data-state="disconnected"] .led { background: var(--led-off); }
+
+  /* Error gets a chrome tint too, for at-a-distance visibility; all other states keep the pill neutral. */
+  .tally[data-state="error"] {
+    color: var(--led-error);
+    border-color: var(--led-error);
+  }
+
+  /* === File rows === */
+  .file-list {
+    background: var(--surface-1);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .filerow {
+    display: grid;
+    grid-template-columns: 14px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 12px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .filerow:first-child { border-top: 0; }
+  .filerow .led {
+    width: 6px; height: 6px; border-radius: 9999px;
+    background: var(--led-idle);
+    transition: background 200ms var(--ease-out);
+    justify-self: center;
+  }
+  .filerow[data-has="true"] .led { background: var(--led-done); }
+  .filerow .name {
+    color: var(--ink-3);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .filerow[data-has="true"] .name { color: var(--ink-1); }
+  .filerow .state {
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-4);
+  }
+  .filerow[data-has="true"] .state { color: var(--ink-2); }
+
+  /* === Buttons === */
+  .btn-primary {
+    background: var(--signal);
+    color: oklch(0.12 0.004 250);
+    border: 0;
+    padding: 14px 28px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: filter 140ms var(--ease-out), transform 80ms var(--ease-out);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .btn-primary:hover:not(:disabled) { filter: brightness(1.08); }
+  .btn-primary:active:not(:disabled) { transform: translateY(1px); }
+  .btn-primary:disabled {
+    background: var(--surface-3);
+    color: var(--ink-4);
+    cursor: not-allowed;
+  }
+
+  .btn-ghost {
+    background: var(--surface-2);
+    color: var(--ink-2);
+    border: 1px solid var(--line-soft);
+    padding: 10px 18px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background 140ms var(--ease-out), color 140ms var(--ease-out);
+  }
+  .btn-ghost:hover { background: var(--surface-3); color: var(--ink-1); }
+
+  .btn-danger {
+    background: var(--surface-2);
+    color: var(--danger);
+    border: 1px solid var(--line-soft);
+    padding: 10px 18px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background 140ms var(--ease-out), border-color 140ms var(--ease-out);
+  }
+  .btn-danger:hover { background: var(--danger-soft); border-color: var(--danger); }
+
+  /* === Panel === */
+  .panel {
+    background: var(--surface-1);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+  }
+  .panel-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line-soft);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* === Console === */
+  #console::-webkit-scrollbar { width: 10px; }
+  #console::-webkit-scrollbar-track { background: transparent; }
+  #console::-webkit-scrollbar-thumb {
+    background: var(--surface-3);
+    border-radius: 5px;
+    border: 2px solid var(--surface-0);
+  }
+  #console::-webkit-scrollbar-thumb:hover { background: var(--line-strong); }
+  #console .log-line {
+    padding-left: 2px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  #console .log-cmd  { color: var(--signal); }
+  #console .log-info { color: var(--ink-2); }
+  #console .log-ok   { color: var(--ink-1); }
+  #console .log-warn { color: var(--signal-dim); }
+  #console .log-err  { color: var(--danger); }
+  #console .log-out  { color: var(--ink-2); }
+
+  /* === Progress === */
+  .progress {
+    flex: 1;
+    height: 3px;
+    background: var(--surface-2);
+    overflow: hidden;
+    border-radius: 1.5px;
+  }
+  .progress .fill {
+    height: 100%;
+    width: 0;
+    background: var(--signal);
+    transition: width 220ms var(--ease-out), background 220ms var(--ease-out);
+  }
+  .progress.done .fill { background: var(--ink-1); }
+  .progress.error .fill { background: var(--danger); }
+
+  /* === Script editor === */
+  textarea#script {
+    background: var(--surface-1);
+    border: 1px solid var(--line-soft);
+    color: var(--ink-1);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    padding: 14px 16px;
+    border-radius: 3px;
+    width: 100%;
+    resize: none;
+    min-height: 240px;
+    transition: border-color 160ms var(--ease-out);
+  }
+  textarea#script:focus { border-color: var(--signal); }
+  textarea#script::placeholder { color: var(--ink-4); }
+
+  /* === Footer text === */
+  footer code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* === Preview === */
+  .preview-frame {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    width: 100%;
+    max-width: 240px;
+    margin-inline: auto;
+    background: var(--surface-0);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .preview-frame video { width: 100%; height: 100%; object-fit: contain; background: var(--surface-0); }
+
+  /* === Animations === */
+  @keyframes led-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.22); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0s !important;
+    }
+    .stage[data-status="running"] .led,
+    .tally[data-state="running"] .led,
+    .tally[data-state="starting"] .led {
+      opacity: 1; transform: none;
+    }
+  }
 </style>
 </head>
-<body class="min-h-screen grid-bg">
+<body class="min-h-screen">
 
-<header class="sticky top-0 z-20 border-b border-white/5 bg-ink-950/80 backdrop-blur">
-  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-4">
-    <div class="flex items-center gap-2">
-      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-500 to-lime-400 grid place-items-center text-ink-950 font-black">P</div>
-      <div>
-        <div class="text-sm font-semibold tracking-wide">PCC</div>
-        <div class="text-[11px] text-white/50 -mt-0.5">Short-form Video Builder</div>
-      </div>
+<!-- =================== HEADER =================== -->
+<header class="sticky top-0 z-20 border-b border-line-soft bg-surface-1">
+  <div class="max-w-[1320px] mx-auto px-8 py-3 flex items-center gap-6">
+    <div class="flex items-baseline gap-3">
+      <div class="text-[15px] font-bold tracking-tight text-ink-1">Footage Retrieval Automation</div>
+      <div class="text-[10px] uppercase tracking-[0.14em] text-ink-3 mono">Short-form Video Builder</div>
     </div>
-    <div class="ml-auto flex items-center gap-2" id="fileChips">
-      <!-- file existence chips inserted by JS -->
+    <div class="ml-auto flex items-center gap-3">
+      <span id="tally" class="tally" data-state="idle">
+        <span class="led"></span>
+        <span id="tallyText">IDLE</span>
+      </span>
     </div>
   </div>
 </header>
 
-<main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-12 gap-6">
+<!-- =================== MAIN =================== -->
+<main class="max-w-[1320px] mx-auto px-8 py-7 grid grid-cols-12 gap-6">
 
-  <section class="col-span-12 lg:col-span-7 flex flex-col gap-6 min-h-0">
+  <!-- LEFT: Config + Run -->
+  <section class="col-span-12 lg:col-span-8 flex flex-col gap-5 min-h-0">
 
-    <!-- Unified tabbed config panel -->
-    <div class="glass hairline rounded-2xl overflow-hidden flex flex-col flex-1 min-h-0">
-      <nav class="border-b border-white/5 px-2 py-2 flex items-center gap-1">
+    <!-- Tabbed config panel -->
+    <div class="panel flex flex-col flex-1 min-h-0">
+      <nav class="flex items-center border-b border-line-soft" role="tablist">
         <button data-tab="script"   class="tab-btn" aria-selected="true">Script</button>
         <button data-tab="pipeline" class="tab-btn" aria-selected="false">Pipeline</button>
         <button data-tab="video"    class="tab-btn" aria-selected="false">Video</button>
         <button data-tab="hardsub"  class="tab-btn" aria-selected="false">Hardsub</button>
-        <span id="wordCount" class="chip ml-auto mr-2">0 words</span>
+        <div class="ml-auto pr-4">
+          <span id="wordCount" class="mono text-[10px] uppercase tracking-[0.1em] text-ink-3">0 words</span>
+        </div>
       </nav>
 
       <div class="p-6 overflow-y-auto flex-1 min-h-0">
 
-        <!-- Script panel -->
-        <div data-panel="script">
-          <p class="panel-desc">One sentence per line. Saved to <span class="font-mono text-white/70">input.txt</span> when you build.</p>
-          <textarea id="script" rows="11" class="ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm leading-relaxed resize-y" placeholder="Paste your script here, one sentence per line…"></textarea>
+        <!-- ===== Script ===== -->
+        <div data-panel="script" class="h-full flex flex-col">
+          <div class="flex items-baseline justify-between mb-3 shrink-0">
+            <h2 class="text-[12px] font-medium tracking-[0.1em] uppercase text-ink-3">Script</h2>
+            <span class="text-[10.5px] text-ink-4 mono">writes to input.txt on build</span>
+          </div>
+          <textarea id="script" class="flex-1" placeholder="One sentence per line. Each line becomes a clip in the timeline."></textarea>
         </div>
 
-        <!-- Pipeline panel -->
+        <!-- ===== Pipeline ===== -->
         <div data-panel="pipeline" hidden>
-          <p class="panel-desc">Toggle which stages to run. Skipped stages reuse existing files.</p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-            <label class="stage" data-status="pending">
-              <span class="dot"></span><span class="label">TTS — <span class="font-mono text-white/70">kokoro_heart.py</span></span>
+          <div class="flex items-baseline justify-between mb-3">
+            <h2 class="text-[12px] font-medium tracking-[0.1em] uppercase text-ink-3">Pipeline</h2>
+            <span class="text-[10.5px] text-ink-4 mono">toggle stages, skipped stages reuse existing files</span>
+          </div>
+          <div class="panel">
+            <div class="stage" data-status="pending">
+              <span class="led"></span>
+              <span class="lbl">TTS <span class="src">kokoro_heart.py</span></span>
               <input type="checkbox" id="run_tts" class="toggle" checked />
-            </label>
-            <label class="stage" data-status="pending">
-              <span class="dot"></span><span class="label">Subtitles — <span class="font-mono text-white/70">stable-ts</span></span>
+              <span class="state">PENDING</span>
+            </div>
+            <div class="stage" data-status="pending">
+              <span class="led"></span>
+              <span class="lbl">Subtitles <span class="src">stable-ts</span></span>
               <input type="checkbox" id="run_srt" class="toggle" checked />
-            </label>
-            <label class="stage" data-status="pending">
-              <span class="dot"></span><span class="label">SRT color fix <span class="meta">#00ff00 → #ff00ffff</span></span>
+              <span class="state">PENDING</span>
+            </div>
+            <div class="stage" data-status="pending">
+              <span class="led"></span>
+              <span class="lbl">Color fix <span class="src">00ff00 → ff00ffff</span></span>
               <input type="checkbox" id="run_color_fix" class="toggle" checked />
-            </label>
-            <label class="stage" data-status="pending">
-              <span class="dot"></span><span class="label">Build video — <span class="font-mono text-white/70">footage.py</span></span>
+              <span class="state">PENDING</span>
+            </div>
+            <div class="stage" data-status="pending">
+              <span class="led"></span>
+              <span class="lbl">Footage <span class="src">footage.py</span></span>
               <input type="checkbox" id="run_footage" class="toggle" checked />
-            </label>
-            <label class="stage md:col-span-2" data-status="pending">
-              <span class="dot"></span><span class="label">Burn hardsub — <span class="font-mono text-white/70">burn_hardsub_fit_ass.py</span></span>
+              <span class="state">PENDING</span>
+            </div>
+            <div class="stage" data-status="pending">
+              <span class="led"></span>
+              <span class="lbl">Hardsub <span class="src">burn_hardsub_fit_ass.py</span></span>
               <input type="checkbox" id="run_hardsub" class="toggle" checked />
-            </label>
+              <span class="state">PENDING</span>
+            </div>
           </div>
         </div>
 
-        <!-- Video panel -->
+        <!-- ===== Video ===== -->
         <div data-panel="video" hidden>
-          <p class="panel-desc">Passed to <span class="font-mono text-white/70">footage.py</span>.</p>
-          <div class="grid grid-cols-2 gap-4">
-            <label class="block">
-              <span class="text-xs uppercase tracking-wider text-white/50">Resolution</span>
-              <select id="size" class="ring-soft mt-1 w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm">
-                <option value="1080x1920">1080x1920 — 9:16 portrait</option>
-                <option value="1080x1350">1080x1350 — 4:5</option>
-                <option value="1080x1080">1080x1080 — 1:1</option>
-                <option value="1920x1080">1920x1080 — 16:9</option>
+          <div class="flex items-baseline justify-between mb-3">
+            <h2 class="text-[12px] font-medium tracking-[0.1em] uppercase text-ink-3">Video</h2>
+            <span class="text-[10.5px] text-ink-4 mono">passes flags to footage.py</span>
+          </div>
+
+          <div class="grid grid-cols-12 gap-x-5 gap-y-4">
+            <label class="col-span-6 block">
+              <span class="label">Resolution</span>
+              <select id="size" class="field">
+                <option value="1080x1920">1080×1920 (9:16 portrait)</option>
+                <option value="1080x1350">1080×1350 (4:5)</option>
+                <option value="1080x1080">1080×1080 (1:1)</option>
+                <option value="1920x1080">1920×1080 (16:9)</option>
               </select>
             </label>
 
-            <div>
-              <span class="text-xs uppercase tracking-wider text-white/50">Fit mode</span>
-              <div class="mt-1 grid grid-cols-3 gap-1 bg-ink-800 hairline rounded-lg p-1 text-sm">
-                <button data-fit="cover"   class="fit-btn rounded-md px-2 py-1.5 bg-accent-600 text-ink-950 font-semibold">cover</button>
-                <button data-fit="contain" class="fit-btn rounded-md px-2 py-1.5 hover:bg-white/5">contain</button>
-                <button data-fit="blurpad" class="fit-btn rounded-md px-2 py-1.5 hover:bg-white/5">blurpad</button>
+            <div class="col-span-6">
+              <span class="label">Fit</span>
+              <div class="seg w-full">
+                <button data-fit="cover"   class="seg-btn flex-1 is-active">cover</button>
+                <button data-fit="contain" class="seg-btn flex-1">contain</button>
+                <button data-fit="blurpad" class="seg-btn flex-1">blurpad</button>
               </div>
             </div>
 
-            <label class="block">
-              <span class="text-xs uppercase tracking-wider text-white/50">Pad color (contain)</span>
-              <input id="bg_color" value="black" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            <label class="col-span-6 block">
+              <span class="label">Pad color <span class="text-ink-4 normal-case tracking-normal">(contain)</span></span>
+              <input id="bg_color" value="black" class="field" />
             </label>
 
-            <label class="block">
-              <span class="text-xs uppercase tracking-wider text-white/50">Blur (blurpad — radius:power)</span>
-              <input id="bg_blur" value="24:1" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            <label class="col-span-6 block">
+              <span class="label">Blur <span class="text-ink-4 normal-case tracking-normal">(blurpad, radius:power)</span></span>
+              <input id="bg_blur" value="24:1" class="field" />
             </label>
 
-            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
-              <div>
-                <div class="text-sm">Family diversity</div>
-                <div class="text-[11px] text-white/50">Avoid same filename family</div>
-              </div>
-              <input type="checkbox" id="family_diversity" class="toggle" />
+            <label class="col-span-4 block">
+              <span class="label">Seed</span>
+              <input id="seed" value="42" class="field" />
+            </label>
+            <label class="col-span-4 block">
+              <span class="label">Mix source dB</span>
+              <input id="mix_source_db" value="-15.0" class="field" />
+            </label>
+            <label class="col-span-4 block">
+              <span class="label">Exclude</span>
+              <input id="exclude_files" placeholder="fight_1_m-mw.mp4" class="field" />
             </label>
 
-            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
-              <div>
-                <div class="text-sm">Allow reuse</div>
-                <div class="text-[11px] text-white/50">Same clip can appear twice</div>
-              </div>
-              <input type="checkbox" id="allow_reuse" class="toggle" />
-            </label>
-
-            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
-              <div>
-                <div class="text-sm">Debug logging</div>
-                <div class="text-[11px] text-white/50">Verbose selection info</div>
-              </div>
-              <input type="checkbox" id="debug" class="toggle" checked />
-            </label>
-
-            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
-              <div>
-                <div class="text-sm">Mix source audio</div>
-                <div class="text-[11px] text-white/50">Blend clip audio</div>
-              </div>
-              <input type="checkbox" id="mix_source" class="toggle" checked />
-            </label>
-
-            <label class="block">
-              <span class="text-xs uppercase tracking-wider text-white/50">Seed</span>
-              <input id="seed" value="42" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
-            </label>
-            <label class="block">
-              <span class="text-xs uppercase tracking-wider text-white/50">Mix source dB</span>
-              <input id="mix_source_db" value="-15.0" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
-            </label>
-
-            <label class="block col-span-2">
-              <span class="text-xs uppercase tracking-wider text-white/50">Exclude files (comma separated)</span>
-              <input id="exclude_files" placeholder="fight_1_m-mw.mp4, run_2.mp4" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
-            </label>
+            <!-- Booleans row -->
+            <div class="col-span-12 grid grid-cols-12 gap-x-5 gap-y-2 pt-2 border-t border-line-soft">
+              <label class="col-span-6 lg:col-span-3 flex items-center justify-between gap-3 py-1.5">
+                <div class="min-w-0">
+                  <div class="text-[12px] text-ink-1">Family diversity</div>
+                  <div class="text-[10.5px] text-ink-4">avoid same filename family</div>
+                </div>
+                <input type="checkbox" id="family_diversity" class="toggle" />
+              </label>
+              <label class="col-span-6 lg:col-span-3 flex items-center justify-between gap-3 py-1.5">
+                <div class="min-w-0">
+                  <div class="text-[12px] text-ink-1">Allow reuse</div>
+                  <div class="text-[10.5px] text-ink-4">same clip can repeat</div>
+                </div>
+                <input type="checkbox" id="allow_reuse" class="toggle" />
+              </label>
+              <label class="col-span-6 lg:col-span-3 flex items-center justify-between gap-3 py-1.5">
+                <div class="min-w-0">
+                  <div class="text-[12px] text-ink-1">Mix source</div>
+                  <div class="text-[10.5px] text-ink-4">blend clip audio</div>
+                </div>
+                <input type="checkbox" id="mix_source" class="toggle" checked />
+              </label>
+              <label class="col-span-6 lg:col-span-3 flex items-center justify-between gap-3 py-1.5">
+                <div class="min-w-0">
+                  <div class="text-[12px] text-ink-1">Debug</div>
+                  <div class="text-[10.5px] text-ink-4">verbose selection logs</div>
+                </div>
+                <input type="checkbox" id="debug" class="toggle" checked />
+              </label>
+            </div>
           </div>
         </div>
 
-        <!-- Hardsub panel -->
+        <!-- ===== Hardsub ===== -->
         <div data-panel="hardsub" hidden>
-          <p class="panel-desc">Passed to <span class="font-mono text-white/70">burn_hardsub_fit_ass.py</span>.</p>
-          <div class="grid grid-cols-2 gap-4">
-            <label class="block">
-              <span class="text-xs uppercase tracking-wider text-white/50">Margin V ratio</span>
-              <input id="hardsub_margin_v_ratio" value="0.24" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+          <div class="flex items-baseline justify-between mb-3">
+            <h2 class="text-[12px] font-medium tracking-[0.1em] uppercase text-ink-3">Hardsub</h2>
+            <span class="text-[10.5px] text-ink-4 mono">passes flags to burn_hardsub_fit_ass.py</span>
+          </div>
+
+          <div class="grid grid-cols-12 gap-x-5 gap-y-4">
+            <label class="col-span-6 lg:col-span-3 block">
+              <span class="label">Margin V ratio</span>
+              <input id="hardsub_margin_v_ratio" value="0.24" class="field" />
             </label>
-            <label class="block">
-              <span class="text-xs uppercase tracking-wider text-white/50">Base scale</span>
-              <input id="hardsub_base_scale" value="0.056" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            <label class="col-span-6 lg:col-span-3 block">
+              <span class="label">Base scale</span>
+              <input id="hardsub_base_scale" value="0.056" class="field" />
             </label>
-            <label class="block">
-              <span class="text-xs uppercase tracking-wider text-white/50">Color order</span>
-              <select id="hardsub_color_order" class="ring-soft mt-1 w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm">
+            <label class="col-span-6 lg:col-span-3 block">
+              <span class="label">Color order</span>
+              <select id="hardsub_color_order" class="field">
                 <option value="rgb">rgb</option>
                 <option value="bgr">bgr</option>
               </select>
             </label>
-            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
-              <div>
-                <div class="text-sm">Keep font color</div>
-                <div class="text-[11px] text-white/50">--keep_font_color</div>
+            <label class="col-span-6 lg:col-span-3 flex items-center justify-between gap-3 self-end pb-1">
+              <div class="min-w-0">
+                <div class="text-[12px] text-ink-1">Keep font color</div>
+                <div class="text-[10.5px] text-ink-4 mono">--keep_font_color</div>
               </div>
               <input type="checkbox" id="hardsub_keep_font_color" class="toggle" checked />
             </label>
@@ -230,59 +743,69 @@
     </div>
 
     <!-- Run bar -->
-    <div class="glass hairline rounded-2xl p-5 flex items-center gap-4">
-      <button id="runBtn" class="px-5 py-3 rounded-xl bg-gradient-to-br from-accent-500 to-lime-400 text-ink-950 font-bold text-sm shadow-lg shadow-accent-600/20 hover:brightness-110 active:scale-[.98] transition">
-        ▶  Build video
-      </button>
-      <button id="cancelBtn" class="hidden px-4 py-3 rounded-xl bg-rose-400/10 text-rose-400 hairline text-sm">Cancel</button>
-      <div class="text-xs text-white/50">Runs the full pipeline against your current files.</div>
+    <div class="panel flex items-center gap-4 px-5 py-4">
+      <button id="runBtn" class="btn-primary flex-1">Build</button>
+      <button id="cancelBtn" class="btn-danger hidden shrink-0">Cancel</button>
     </div>
+
   </section>
 
-  <!-- RIGHT: Output (same row as left section, defines row height) -->
-  <aside class="col-span-12 lg:col-span-5">
-    <div class="glass hairline rounded-2xl p-6 h-full flex flex-col">
-      <div class="flex items-center justify-between mb-4 shrink-0">
-        <h2 class="text-lg font-semibold">Output</h2>
-        <a id="downloadLink" href="#" class="hidden chip">download</a>
+  <!-- RIGHT: Session + Preview -->
+  <aside class="col-span-12 lg:col-span-4 flex flex-col gap-5">
+
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Session files</div>
+        <div class="ml-auto text-[10px] mono text-ink-4">project root</div>
       </div>
-      <div class="flex-1 grid place-items-center min-h-0">
-        <div class="mx-auto aspect-[9/16] max-w-[280px] w-full rounded-2xl overflow-hidden hairline bg-gradient-to-br from-ink-700 to-ink-900 relative grid place-items-center">
-          <video id="videoEl" class="hidden w-full h-full object-contain bg-black" controls></video>
-          <div id="videoPlaceholder" class="text-white/30 text-xs text-center px-4">
-            No video yet.<br/>Build the pipeline to see the result here.
+      <div id="fileList" class="file-list border-0 rounded-none">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <div class="panel flex-1 flex flex-col">
+      <div class="panel-header">
+        <div class="panel-title">Preview</div>
+        <a id="downloadLink" href="#" class="ml-auto hidden text-[10px] mono text-signal uppercase tracking-[0.1em] hover:underline">download mp4 ↓</a>
+      </div>
+      <div class="p-5 flex-1 grid place-items-center">
+        <div class="preview-frame">
+          <video id="videoEl" class="hidden" controls></video>
+          <div id="videoPlaceholder" class="text-ink-4 text-[10.5px] mono text-center leading-relaxed px-4 uppercase tracking-[0.08em]">
+            No video yet.<br/>Build to populate.
           </div>
         </div>
       </div>
     </div>
   </aside>
 
-  <!-- BOTTOM: Console spans full width -->
+  <!-- BOTTOM: Console -->
   <div class="col-span-12">
-    <div class="glass hairline rounded-2xl p-6">
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="text-lg font-semibold">Console</h2>
-        <div class="flex items-center gap-2 text-xs text-white/50">
-          <span id="statusDot" class="w-2 h-2 rounded-full bg-white/30"></span>
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Console</div>
+        <div class="ml-auto flex items-center gap-3 text-[10px] mono uppercase tracking-[0.1em] text-ink-3">
           <span id="statusText">idle</span>
         </div>
       </div>
-      <div id="console" class="h-80 overflow-auto rounded-lg bg-black/40 hairline p-3 font-mono text-[12px] leading-relaxed scroll-shadow">
-        <div class="text-white/40">$ awaiting command…</div>
+
+      <div id="console" class="h-72 overflow-auto bg-surface-0 font-mono text-[11.5px] leading-relaxed px-5 py-4 border-b border-line-soft">
+        <div class="log-line log-info">$ awaiting command</div>
       </div>
-      <div class="mt-3 flex items-center gap-3">
-        <div class="flex-1 h-1.5 rounded-full bg-ink-800 overflow-hidden">
-          <div id="bar" class="h-full w-0 bg-gradient-to-r from-accent-500 to-lime-400 transition-all duration-200"></div>
+
+      <div class="flex items-center gap-4 px-5 py-3.5">
+        <div id="progress" class="progress">
+          <div id="bar" class="fill"></div>
         </div>
-        <span id="pct" class="text-xs text-white/60 font-mono w-10 text-right">0%</span>
+        <span id="pct" class="text-[11px] text-ink-3 mono w-9 text-right">0%</span>
       </div>
     </div>
   </div>
 
 </main>
 
-<footer class="max-w-7xl mx-auto px-6 pb-10 text-[11px] text-white/30">
-  PCC interface • FastAPI backend at <span class="font-mono">/api</span> • streams subprocess output via SSE.
+<footer class="max-w-[1320px] mx-auto px-8 pb-10 pt-2 text-[10px] text-ink-4 mono uppercase tracking-[0.12em]">
+  FastAPI backend on <code class="text-ink-3">/api</code>. Subprocess output streams via SSE.
 </footer>
 
 <script>
@@ -291,6 +814,7 @@
   const stages = Array.from(document.querySelectorAll('.stage'));
   const stageOrder = ['tts','srt','color','footage','hardsub'];
   const toggleIds = {tts:'run_tts', srt:'run_srt', color:'run_color_fix', footage:'run_footage', hardsub:'run_hardsub'};
+  const stateLabel = {pending:'PENDING', running:'RUNNING', done:'DONE', error:'ERROR', skipped:'SKIP'};
   let activeJob = null;
   let es = null;
 
@@ -304,17 +828,17 @@
   function showTab(id) {
     tabBtns.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === id));
     panels.forEach(p => p.hidden = p.dataset.panel !== id);
-    document.getElementById('wordCount').classList.toggle('hidden', id !== 'script');
+    $('wordCount').classList.toggle('hidden', id !== 'script');
   }
   tabBtns.forEach(t => t.addEventListener('click', () => showTab(t.dataset.tab)));
   showTab('script');
 
-  // ---------- fit toggle ----------
+  // ---------- fit segmented ----------
   let fit = 'cover';
-  document.querySelectorAll('.fit-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('[data-fit]').forEach(b => b.addEventListener('click', () => {
     fit = b.dataset.fit;
-    document.querySelectorAll('.fit-btn').forEach(x => x.className = 'fit-btn rounded-md px-2 py-1.5 hover:bg-white/5');
-    b.className = 'fit-btn rounded-md px-2 py-1.5 bg-accent-600 text-ink-950 font-semibold';
+    document.querySelectorAll('[data-fit]').forEach(x => x.classList.remove('is-active'));
+    b.classList.add('is-active');
   }));
 
   // ---------- script editor + word count ----------
@@ -334,50 +858,68 @@
       ]);
       scriptEl.value = s.script || '';
       updateCount();
-      renderFileChips(f);
+      renderFiles(f);
     } catch (e) {
-      console.warn('bootstrap failed', e);
+      // backend not yet running, render placeholder file list
+      renderFiles({});
     }
   }
-  function renderFileChips(files) {
+  function renderFiles(files) {
     const order = ['input.txt','heart_all.wav','heart_all.srt','heart_all_visual.mp4'];
-    const wrap = $('fileChips'); wrap.innerHTML = '';
+    const wrap = $('fileList');
+    wrap.innerHTML = '';
     order.forEach(name => {
-      const has = files[name]?.exists;
-      const c = document.createElement('span');
-      c.className = 'chip';
-      c.style.color = has ? '#a3e635' : '#9ca3af';
-      c.style.background = has ? 'rgba(163,230,53,.08)' : 'rgba(255,255,255,.04)';
-      c.textContent = (has ? '✓ ' : '· ') + name;
-      wrap.appendChild(c);
+      const has = !!(files[name] && files[name].exists);
+      const row = document.createElement('div');
+      row.className = 'filerow';
+      row.dataset.has = has;
+      row.innerHTML =
+        '<span class="led"></span>' +
+        '<span class="name">' + name + '</span>' +
+        '<span class="state">' + (has ? 'READY' : 'MISSING') + '</span>';
+      wrap.appendChild(row);
     });
   }
   bootstrap();
 
   // ---------- console + status ----------
   const cons = $('console');
-  function appendLog(line, level='out') {
-    const colors = { cmd:'text-accent-400', info:'text-white/70', ok:'text-lime-400', warn:'text-yellow-300', err:'text-rose-400', out:'text-white/70' };
+  function appendLog(line, level) {
+    level = level || 'out';
     const d = document.createElement('div');
-    d.className = colors[level] || 'text-white/70';
+    d.className = 'log-line log-' + level;
     d.textContent = line;
     cons.appendChild(d);
     cons.scrollTop = cons.scrollHeight;
   }
-  function setStatus(text, color) {
+  function setStatus(text, state) {
     $('statusText').textContent = text;
-    $('statusDot').className = 'w-2 h-2 rounded-full ' + color;
+    $('tally').dataset.state = state;
+    $('tallyText').textContent = ({
+      idle: 'IDLE',
+      starting: 'INIT',
+      running: 'RUN',
+      done: 'DONE',
+      error: 'ERR',
+      disconnected: 'OFFLINE',
+    })[state] || 'IDLE';
   }
   function setStageStatus(id, status) {
     const el = stageEl[id]; if (!el) return;
     el.dataset.status = status;
+    const stateEl = el.querySelector('.state');
+    if (stateEl) stateEl.textContent = stateLabel[status] || status.toUpperCase();
   }
-  function updateProgress() {
+  function updateProgress(opts) {
+    opts = opts || {};
     const total = stageOrder.length;
     const done = stageOrder.filter(id => ['done','skipped'].includes(stageEl[id]?.dataset.status)).length;
     const p = Math.round((done/total)*100);
     $('bar').style.width = p + '%';
     $('pct').textContent = p + '%';
+    const prog = $('progress');
+    prog.classList.toggle('done', opts.done === true);
+    prog.classList.toggle('error', opts.error === true);
   }
 
   // ---------- build payload ----------
@@ -420,37 +962,48 @@
   async function startRun() {
     cons.innerHTML = '';
     stageOrder.forEach(id => setStageStatus(id, $(toggleIds[id]).checked ? 'pending' : 'skipped'));
-    updateProgress();
-    setStatus('starting', 'bg-accent-400 pulse-dot');
-    $('runBtn').disabled = true; $('runBtn').classList.add('opacity-50');
+    updateProgress({ done: false, error: false });
+    setStatus('starting', 'starting');
+    $('runBtn').disabled = true;
+    $('runBtn').textContent = 'Running…';
     $('cancelBtn').classList.remove('hidden');
     $('videoEl').classList.add('hidden');
     $('videoPlaceholder').classList.remove('hidden');
     $('downloadLink').classList.add('hidden');
 
-    const res = await fetch('/api/run', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(readConfig()),
-    });
-    const { job_id } = await res.json();
-    activeJob = job_id;
-    setStatus('running', 'bg-accent-400 pulse-dot');
+    try {
+      const res = await fetch('/api/run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(readConfig()),
+      });
+      const { job_id } = await res.json();
+      activeJob = job_id;
+      setStatus('running', 'running');
 
-    es = new EventSource('/api/stream/' + job_id);
-    es.onmessage = (ev) => {
-      const msg = JSON.parse(ev.data);
-      handleEvent(msg);
-    };
-    es.addEventListener('end', () => {
-      es.close(); es = null;
-      activeJob = null;
-      $('runBtn').disabled = false; $('runBtn').classList.remove('opacity-50');
+      es = new EventSource('/api/stream/' + job_id);
+      es.onmessage = (ev) => {
+        const msg = JSON.parse(ev.data);
+        handleEvent(msg);
+      };
+      es.addEventListener('end', () => {
+        es.close(); es = null;
+        activeJob = null;
+        $('runBtn').disabled = false;
+        $('runBtn').textContent = 'Build';
+        $('cancelBtn').classList.add('hidden');
+      });
+      es.onerror = () => {
+        setStatus('disconnected', 'disconnected');
+      };
+    } catch (e) {
+      setStatus('error', 'error');
+      appendLog('[error] ' + (e && e.message || e), 'err');
+      updateProgress({ error: true });
+      $('runBtn').disabled = false;
+      $('runBtn').textContent = 'Build';
       $('cancelBtn').classList.add('hidden');
-    });
-    es.onerror = () => {
-      setStatus('disconnected', 'bg-rose-400');
-    };
+    }
   }
 
   function handleEvent(msg) {
@@ -461,21 +1014,25 @@
       setStageStatus(data.id, data.status);
       updateProgress();
     } else if (kind === 'done') {
-      setStatus('done', 'bg-lime-400');
+      setStatus('done', 'done');
+      updateProgress({ done: true });
       const url = '/api/video/' + encodeURIComponent(data.out_video) + '?t=' + Date.now();
       const v = $('videoEl');
-      v.src = url; v.classList.remove('hidden');
+      v.src = url;
+      v.classList.remove('hidden');
       $('videoPlaceholder').classList.add('hidden');
       const a = $('downloadLink');
       a.href = url; a.download = data.out_video; a.classList.remove('hidden');
-      fetch('/api/files').then(r => r.json()).then(renderFileChips);
+      fetch('/api/files').then(r => r.json()).then(renderFiles).catch(() => {});
     } else if (kind === 'error') {
-      setStatus('error', 'bg-rose-400');
+      setStatus('error', 'error');
       appendLog('[error] ' + data.message, 'err');
-    } else if (kind === 'stages') {
-      // initial stage list — already rendered statically; ignore
+      updateProgress({ error: true });
     }
   }
+
+  // initial render: file list with no data (so placeholder shows pre-bootstrap)
+  renderFiles({});
 </script>
 </body>
 </html>
