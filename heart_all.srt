@@ -1,319 +1,303 @@
-﻿1
-00:00:00,220 --> 00:00:00,320
-<font color="#ff00ffff">You</font> will never
+1
+00:00:00,260 --> 00:00:00,360
+<font color="#ff00ffff">Cat</font> behavior is unbelievable.
 
 2
-00:00:00,320 --> 00:00:00,400
-You <font color="#ff00ffff">will</font> never
+00:00:00,360 --> 00:00:00,800
+Cat <font color="#ff00ffff">behavior</font> is unbelievable.
 
 3
-00:00:00,400 --> 00:00:00,580
-You will <font color="#ff00ffff">never</font>
+00:00:00,800 --> 00:00:01,060
+Cat behavior <font color="#ff00ffff">is</font> unbelievable.
 
 4
-00:00:00,580 --> 00:00:00,820
-<font color="#ff00ffff">look</font> at cats
+00:00:01,060 --> 00:00:01,520
+Cat behavior is <font color="#ff00ffff">unbelievable.</font>
 
 5
-00:00:00,820 --> 00:00:00,940
-look <font color="#ff00ffff">at</font> cats
+00:00:02,120 --> 00:00:02,200
+<font color="#ff00ffff">Your</font> fluffy little friend
 
 6
-00:00:00,940 --> 00:00:01,160
-look at <font color="#ff00ffff">cats</font>
+00:00:02,200 --> 00:00:02,480
+Your <font color="#ff00ffff">fluffy</font> little friend
 
 7
-00:00:01,160 --> 00:00:01,340
-<font color="#ff00ffff">the</font> same way
+00:00:02,480 --> 00:00:02,740
+Your fluffy <font color="#ff00ffff">little</font> friend
 
 8
-00:00:01,340 --> 00:00:01,560
-the <font color="#ff00ffff">same</font> way
+00:00:02,740 --> 00:00:03,000
+Your fluffy little <font color="#ff00ffff">friend</font>
 
 9
-00:00:01,560 --> 00:00:01,800
-the same <font color="#ff00ffff">way</font>
+00:00:03,000 --> 00:00:03,220
+<font color="#ff00ffff">does</font> not sweat
 
 10
-00:00:01,800 --> 00:00:02,080
-<font color="#ff00ffff">once</font> you learn
+00:00:03,220 --> 00:00:03,380
+does <font color="#ff00ffff">not</font> sweat
 
 11
-00:00:02,080 --> 00:00:02,200
-once <font color="#ff00ffff">you</font> learn
+00:00:03,380 --> 00:00:03,600
+does not <font color="#ff00ffff">sweat</font>
 
 12
-00:00:02,200 --> 00:00:02,380
-once you <font color="#ff00ffff">learn</font>
+00:00:03,600 --> 00:00:03,980
+<font color="#ff00ffff">exactly</font> like we do.
 
 13
-00:00:02,380 --> 00:00:02,580
-<font color="#ff00ffff">about</font> their long tails.
+00:00:03,980 --> 00:00:04,280
+exactly <font color="#ff00ffff">like</font> we do.
 
 14
-00:00:02,580 --> 00:00:02,760
-about <font color="#ff00ffff">their</font> long tails.
+00:00:04,280 --> 00:00:04,420
+exactly like <font color="#ff00ffff">we</font> do.
 
 15
-00:00:02,760 --> 00:00:02,960
-about their <font color="#ff00ffff">long</font> tails.
+00:00:04,420 --> 00:00:04,580
+exactly like we <font color="#ff00ffff">do.</font>
 
 16
-00:00:02,960 --> 00:00:03,220
-about their long <font color="#ff00ffff">tails.</font>
+00:00:05,040 --> 00:00:05,120
+<font color="#ff00ffff">They</font> are completely
 
 17
-00:00:03,780 --> 00:00:03,880
-<font color="#ff00ffff">It</font> is not
+00:00:05,120 --> 00:00:05,180
+They <font color="#ff00ffff">are</font> completely
 
 18
-00:00:03,880 --> 00:00:03,980
-It <font color="#ff00ffff">is</font> not
+00:00:05,180 --> 00:00:05,540
+They are <font color="#ff00ffff">completely</font>
 
 19
-00:00:03,980 --> 00:00:04,140
-It is <font color="#ff00ffff">not</font>
+00:00:05,540 --> 00:00:05,980
+<font color="#ff00ffff">covered</font> in thick fur,
 
 20
-00:00:04,140 --> 00:00:04,320
-<font color="#ff00ffff">just</font> a cute
+00:00:05,980 --> 00:00:06,220
+covered <font color="#ff00ffff">in</font> thick fur,
 
 21
-00:00:04,320 --> 00:00:04,460
-just <font color="#ff00ffff">a</font> cute
+00:00:06,220 --> 00:00:06,440
+covered in <font color="#ff00ffff">thick</font> fur,
 
 22
-00:00:04,460 --> 00:00:04,700
-just a <font color="#ff00ffff">cute</font>
+00:00:06,440 --> 00:00:06,700
+covered in thick <font color="#ff00ffff">fur,</font>
 
 23
-00:00:04,700 --> 00:00:05,000
-<font color="#ff00ffff">fluffy</font> thing that
+00:00:06,900 --> 00:00:07,040
+<font color="#ff00ffff">so</font> they cool
 
 24
-00:00:05,000 --> 00:00:05,340
-fluffy <font color="#ff00ffff">thing</font> that
+00:00:07,040 --> 00:00:07,180
+so <font color="#ff00ffff">they</font> cool
 
 25
-00:00:05,340 --> 00:00:05,520
-fluffy thing <font color="#ff00ffff">that</font>
+00:00:07,180 --> 00:00:07,400
+so they <font color="#ff00ffff">cool</font>
 
 26
-00:00:05,520 --> 00:00:05,760
-<font color="#ff00ffff">wiggles</font> when they
+00:00:07,400 --> 00:00:07,620
+<font color="#ff00ffff">down</font> a weird way.
 
 27
-00:00:05,760 --> 00:00:05,980
-wiggles <font color="#ff00ffff">when</font> they
+00:00:07,620 --> 00:00:07,760
+down <font color="#ff00ffff">a</font> weird way.
 
 28
-00:00:05,980 --> 00:00:06,120
-wiggles when <font color="#ff00ffff">they</font>
+00:00:07,760 --> 00:00:07,960
+down a <font color="#ff00ffff">weird</font> way.
 
 29
-00:00:06,120 --> 00:00:06,220
-<font color="#ff00ffff">are</font> super playful.
+00:00:07,960 --> 00:00:08,220
+down a weird <font color="#ff00ffff">way.</font>
 
 30
-00:00:06,220 --> 00:00:06,520
-are <font color="#ff00ffff">super</font> playful.
+00:00:08,860 --> 00:00:08,960
+<font color="#ff00ffff">Their</font> secret sweat
 
 31
-00:00:06,520 --> 00:00:06,800
-are super <font color="#ff00ffff">playful.</font>
+00:00:08,960 --> 00:00:09,320
+Their <font color="#ff00ffff">secret</font> sweat
 
 32
-00:00:07,480 --> 00:00:07,580
-<font color="#ff00ffff">Their</font> tail acts
+00:00:09,320 --> 00:00:09,600
+Their secret <font color="#ff00ffff">sweat</font>
 
 33
-00:00:07,580 --> 00:00:07,880
-Their <font color="#ff00ffff">tail</font> acts
+00:00:09,600 --> 00:00:09,900
+<font color="#ff00ffff">spots</font> are actually
 
 34
-00:00:07,880 --> 00:00:08,200
-Their tail <font color="#ff00ffff">acts</font>
+00:00:09,900 --> 00:00:10,220
+spots <font color="#ff00ffff">are</font> actually
 
 35
-00:00:08,200 --> 00:00:08,380
-<font color="#ff00ffff">like</font> a super smart,
+00:00:10,220 --> 00:00:10,640
+spots are <font color="#ff00ffff">actually</font>
 
 36
-00:00:08,380 --> 00:00:08,480
-like <font color="#ff00ffff">a</font> super smart,
+00:00:10,640 --> 00:00:10,840
+<font color="#ff00ffff">right</font> on the bottom
 
 37
-00:00:08,480 --> 00:00:08,800
-like a <font color="#ff00ffff">super</font> smart,
+00:00:10,840 --> 00:00:11,020
+right <font color="#ff00ffff">on</font> the bottom
 
 38
-00:00:08,800 --> 00:00:09,120
-like a super <font color="#ff00ffff">smart,</font>
+00:00:11,020 --> 00:00:11,120
+right on <font color="#ff00ffff">the</font> bottom
 
 39
-00:00:09,320 --> 00:00:09,520
-<font color="#ff00ffff">heavy</font> weight that
+00:00:11,120 --> 00:00:11,380
+right on the <font color="#ff00ffff">bottom</font>
 
 40
-00:00:09,520 --> 00:00:09,740
-heavy <font color="#ff00ffff">weight</font> that
+00:00:11,380 --> 00:00:11,560
+<font color="#ff00ffff">of</font> their tiny paws.
 
 41
-00:00:09,740 --> 00:00:10,060
-heavy weight <font color="#ff00ffff">that</font>
+00:00:11,560 --> 00:00:11,640
+of <font color="#ff00ffff">their</font> tiny paws.
 
 42
-00:00:10,060 --> 00:00:10,240
-<font color="#ff00ffff">keeps</font> them totally balanced.
+00:00:11,640 --> 00:00:11,940
+of their <font color="#ff00ffff">tiny</font> paws.
 
 43
-00:00:10,240 --> 00:00:10,440
-keeps <font color="#ff00ffff">them</font> totally balanced.
+00:00:11,940 --> 00:00:12,160
+of their tiny <font color="#ff00ffff">paws.</font>
 
 44
-00:00:10,440 --> 00:00:10,780
-keeps them <font color="#ff00ffff">totally</font> balanced.
+00:00:13,020 --> 00:00:13,120
+<font color="#ff00ffff">When</font> they
 
 45
-00:00:10,780 --> 00:00:11,120
-keeps them totally <font color="#ff00ffff">balanced.</font>
+00:00:13,120 --> 00:00:13,220
+When <font color="#ff00ffff">they</font>
 
 46
-00:00:11,980 --> 00:00:12,080
-<font color="#ff00ffff">When</font> they run
+00:00:13,220 --> 00:00:13,340
+<font color="#ff00ffff">get</font> super hot,
 
 47
-00:00:12,080 --> 00:00:12,160
-When <font color="#ff00ffff">they</font> run
+00:00:13,340 --> 00:00:13,660
+get <font color="#ff00ffff">super</font> hot,
 
 48
-00:00:12,160 --> 00:00:12,340
-When they <font color="#ff00ffff">run</font>
+00:00:13,660 --> 00:00:13,920
+get super <font color="#ff00ffff">hot,</font>
 
 49
-00:00:12,340 --> 00:00:12,620
-<font color="#ff00ffff">fast</font> and turn quickly
+00:00:14,200 --> 00:00:14,300
+<font color="#ff00ffff">or</font> really scared
 
 50
-00:00:12,620 --> 00:00:12,900
-fast <font color="#ff00ffff">and</font> turn quickly
+00:00:14,300 --> 00:00:14,580
+or <font color="#ff00ffff">really</font> scared
 
 51
-00:00:12,900 --> 00:00:13,080
-fast and <font color="#ff00ffff">turn</font> quickly
+00:00:14,580 --> 00:00:14,840
+or really <font color="#ff00ffff">scared</font>
 
 52
-00:00:13,080 --> 00:00:13,360
-fast and turn <font color="#ff00ffff">quickly</font>
+00:00:14,840 --> 00:00:15,040
+<font color="#ff00ffff">they</font> leave cute
 
 53
-00:00:13,360 --> 00:00:13,660
-<font color="#ff00ffff">on</font> slippery floors,
+00:00:15,040 --> 00:00:15,260
+they <font color="#ff00ffff">leave</font> cute
 
 54
-00:00:13,660 --> 00:00:13,880
-on <font color="#ff00ffff">slippery</font> floors,
+00:00:15,260 --> 00:00:15,560
+they leave <font color="#ff00ffff">cute</font>
 
 55
-00:00:13,880 --> 00:00:14,300
-on slippery <font color="#ff00ffff">floors,</font>
+00:00:15,560 --> 00:00:15,800
+<font color="#ff00ffff">wet</font> footprints behind.
 
 56
-00:00:14,580 --> 00:00:14,640
-<font color="#ff00ffff">it</font> swings
+00:00:15,800 --> 00:00:16,140
+wet <font color="#ff00ffff">footprints</font> behind.
 
 57
-00:00:14,640 --> 00:00:14,920
-it <font color="#ff00ffff">swings</font>
+00:00:16,140 --> 00:00:16,540
+wet footprints <font color="#ff00ffff">behind.</font>
 
 58
-00:00:14,920 --> 00:00:15,120
-<font color="#ff00ffff">the</font> other way.
+00:00:17,120 --> 00:00:17,220
+<font color="#ff00ffff">They</font> also lick
 
 59
-00:00:15,120 --> 00:00:15,280
-the <font color="#ff00ffff">other</font> way.
+00:00:17,220 --> 00:00:17,500
+They <font color="#ff00ffff">also</font> lick
 
 60
-00:00:15,280 --> 00:00:15,440
-the other <font color="#ff00ffff">way.</font>
+00:00:17,500 --> 00:00:17,680
+They also <font color="#ff00ffff">lick</font>
 
 61
-00:00:16,064 --> 00:00:16,200
-<font color="#ff00ffff">This</font> neat trick
+00:00:17,680 --> 00:00:17,840
+<font color="#ff00ffff">their</font> fur to
 
 62
-00:00:16,200 --> 00:00:16,380
-This <font color="#ff00ffff">neat</font> trick
+00:00:17,840 --> 00:00:18,020
+their <font color="#ff00ffff">fur</font> to
 
 63
-00:00:16,380 --> 00:00:16,600
-This neat <font color="#ff00ffff">trick</font>
+00:00:18,020 --> 00:00:18,220
+their fur <font color="#ff00ffff">to</font>
 
 64
-00:00:16,600 --> 00:00:16,940
-<font color="#ff00ffff">stops</font> them from tumbling
+00:00:18,220 --> 00:00:18,380
+<font color="#ff00ffff">stay</font> perfectly chill on
 
 65
-00:00:16,940 --> 00:00:17,180
-stops <font color="#ff00ffff">them</font> from tumbling
+00:00:18,380 --> 00:00:18,700
+stay <font color="#ff00ffff">perfectly</font> chill on
 
 66
-00:00:17,180 --> 00:00:17,320
-stops them <font color="#ff00ffff">from</font> tumbling
+00:00:18,700 --> 00:00:19,080
+stay perfectly <font color="#ff00ffff">chill</font> on
 
 67
-00:00:17,320 --> 00:00:17,680
-stops them from <font color="#ff00ffff">tumbling</font>
+00:00:19,080 --> 00:00:19,360
+stay perfectly chill <font color="#ff00ffff">on</font>
 
 68
-00:00:17,680 --> 00:00:17,980
-<font color="#ff00ffff">over</font> and helps
+00:00:19,360 --> 00:00:19,700
+<font color="#ff00ffff">super</font> sunny days.
 
 69
-00:00:17,980 --> 00:00:18,280
-over <font color="#ff00ffff">and</font> helps
+00:00:19,700 --> 00:00:19,960
+super <font color="#ff00ffff">sunny</font> days.
 
 70
-00:00:18,280 --> 00:00:18,520
-over and <font color="#ff00ffff">helps</font>
+00:00:19,960 --> 00:00:20,220
+super sunny <font color="#ff00ffff">days.</font>
 
 71
-00:00:18,520 --> 00:00:18,680
-<font color="#ff00ffff">them</font> stay completely safe.
-
-72
-00:00:18,680 --> 00:00:18,900
-them <font color="#ff00ffff">stay</font> completely safe.
-
-73
-00:00:18,900 --> 00:00:19,280
-them stay <font color="#ff00ffff">completely</font> safe.
-
-74
-00:00:19,280 --> 00:00:19,680
-them stay completely <font color="#ff00ffff">safe.</font>
-
-75
-00:00:20,260 --> 00:00:20,360
+00:00:20,760 --> 00:00:20,860
 <font color="#ff00ffff">And</font> trust me
 
-76
-00:00:20,360 --> 00:00:20,560
+72
+00:00:20,860 --> 00:00:21,060
 And <font color="#ff00ffff">trust</font> me
 
-77
-00:00:20,560 --> 00:00:20,780
+73
+00:00:21,060 --> 00:00:21,280
 And trust <font color="#ff00ffff">me</font>
 
-78
-00:00:20,780 --> 00:00:20,940
+74
+00:00:21,280 --> 00:00:21,420
 <font color="#ff00ffff">when</font> I say.
 
-79
-00:00:20,940 --> 00:00:21,080
+75
+00:00:21,420 --> 00:00:21,540
 when <font color="#ff00ffff">I</font> say.
 
-80
-00:00:21,080 --> 00:00:21,260
+76
+00:00:21,540 --> 00:00:21,740
 when I <font color="#ff00ffff">say.</font>
