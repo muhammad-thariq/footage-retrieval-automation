@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PCC — Short-form Video Builder</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 950:'#07090d', 900:'#0b0f16', 800:'#111723', 700:'#1a2230', 600:'#243042' },
+          accent: { 400:'#7dd3fc', 500:'#38bdf8', 600:'#0ea5e9' },
+          lime: { 400:'#a3e635' },
+          rose: { 400:'#fb7185' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html,body{background:#07090d;color:#e5e7eb}
+  .glass{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));backdrop-filter: blur(8px)}
+  .hairline{box-shadow: inset 0 0 0 1px rgba(255,255,255,.06)}
+  .ring-soft:focus{outline:none;box-shadow:0 0 0 2px rgba(56,189,248,.35), inset 0 0 0 1px rgba(56,189,248,.55)}
+  .chip{padding:.25rem .55rem;border-radius:.5rem;background:rgba(56,189,248,.08);color:#7dd3fc;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase}
+  .scroll-shadow{mask-image:linear-gradient(180deg, #000 90%, transparent)}
+  details>summary{list-style:none;cursor:pointer}
+  details>summary::-webkit-details-marker{display:none}
+  .pulse-dot{animation: pulse 1.4s ease-in-out infinite}
+  @keyframes pulse {0%,100%{opacity:.35}50%{opacity:1}}
+  .grid-bg{background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0); background-size: 22px 22px}
+  .toggle{height:1.25rem;width:2.25rem;appearance:none;border-radius:9999px;background:#1a2230;position:relative;cursor:pointer;transition:background .15s}
+  .toggle::before{content:"";position:absolute;top:2px;left:2px;height:1rem;width:1rem;border-radius:9999px;background:white;transition:transform .15s}
+  .toggle:checked{background:#38bdf8}
+  .toggle:checked::before{transform:translateX(1rem)}
+  textarea{font-family: ui-monospace, SFMono-Regular, Menlo, monospace}
+  .stage{display:flex;align-items:center;gap:.625rem;padding:.55rem .75rem;border-radius:.625rem;background:#111723;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+  .stage .dot{width:.55rem;height:.55rem;border-radius:9999px;background:#374151}
+  .stage[data-status="running"] .dot{background:#38bdf8;animation:pulse 1.4s ease-in-out infinite}
+  .stage[data-status="done"] .dot{background:#a3e635}
+  .stage[data-status="error"] .dot{background:#fb7185}
+  .stage[data-status="skipped"] .dot{background:#52525b}
+  .stage .label{flex:1;font-size:.825rem}
+  .stage .meta{font-size:.7rem;color:#9ca3af}
+  .tab-btn{padding:.5rem 1rem;border-radius:.625rem;font-size:.825rem;font-weight:500;color:#9ca3af;transition:background .15s, color .15s}
+  .tab-btn:hover{background:rgba(255,255,255,.04);color:#e5e7eb}
+  .tab-btn[aria-selected="true"]{background:#0ea5e9;color:#07090d;font-weight:600}
+  .panel-desc{font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:1rem}
+</style>
+</head>
+<body class="min-h-screen grid-bg">
+
+<header class="sticky top-0 z-20 border-b border-white/5 bg-ink-950/80 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-4">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-500 to-lime-400 grid place-items-center text-ink-950 font-black">P</div>
+      <div>
+        <div class="text-sm font-semibold tracking-wide">PCC</div>
+        <div class="text-[11px] text-white/50 -mt-0.5">Short-form Video Builder</div>
+      </div>
+    </div>
+    <div class="ml-auto flex items-center gap-2" id="fileChips">
+      <!-- file existence chips inserted by JS -->
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-12 gap-6">
+
+  <section class="col-span-12 lg:col-span-7 flex flex-col gap-6 min-h-0">
+
+    <!-- Unified tabbed config panel -->
+    <div class="glass hairline rounded-2xl overflow-hidden flex flex-col flex-1 min-h-0">
+      <nav class="border-b border-white/5 px-2 py-2 flex items-center gap-1">
+        <button data-tab="script"   class="tab-btn" aria-selected="true">Script</button>
+        <button data-tab="pipeline" class="tab-btn" aria-selected="false">Pipeline</button>
+        <button data-tab="video"    class="tab-btn" aria-selected="false">Video</button>
+        <button data-tab="hardsub"  class="tab-btn" aria-selected="false">Hardsub</button>
+        <span id="wordCount" class="chip ml-auto mr-2">0 words</span>
+      </nav>
+
+      <div class="p-6 overflow-y-auto flex-1 min-h-0">
+
+        <!-- Script panel -->
+        <div data-panel="script">
+          <p class="panel-desc">One sentence per line. Saved to <span class="font-mono text-white/70">input.txt</span> when you build.</p>
+          <textarea id="script" rows="11" class="ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm leading-relaxed resize-y" placeholder="Paste your script here, one sentence per line…"></textarea>
+        </div>
+
+        <!-- Pipeline panel -->
+        <div data-panel="pipeline" hidden>
+          <p class="panel-desc">Toggle which stages to run. Skipped stages reuse existing files.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <label class="stage" data-status="pending">
+              <span class="dot"></span><span class="label">TTS — <span class="font-mono text-white/70">kokoro_heart.py</span></span>
+              <input type="checkbox" id="run_tts" class="toggle" checked />
+            </label>
+            <label class="stage" data-status="pending">
+              <span class="dot"></span><span class="label">Subtitles — <span class="font-mono text-white/70">stable-ts</span></span>
+              <input type="checkbox" id="run_srt" class="toggle" checked />
+            </label>
+            <label class="stage" data-status="pending">
+              <span class="dot"></span><span class="label">SRT color fix <span class="meta">#00ff00 → #ff00ffff</span></span>
+              <input type="checkbox" id="run_color_fix" class="toggle" checked />
+            </label>
+            <label class="stage" data-status="pending">
+              <span class="dot"></span><span class="label">Build video — <span class="font-mono text-white/70">footage.py</span></span>
+              <input type="checkbox" id="run_footage" class="toggle" checked />
+            </label>
+            <label class="stage md:col-span-2" data-status="pending">
+              <span class="dot"></span><span class="label">Burn hardsub — <span class="font-mono text-white/70">burn_hardsub_fit_ass.py</span></span>
+              <input type="checkbox" id="run_hardsub" class="toggle" checked />
+            </label>
+          </div>
+        </div>
+
+        <!-- Video panel -->
+        <div data-panel="video" hidden>
+          <p class="panel-desc">Passed to <span class="font-mono text-white/70">footage.py</span>.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-white/50">Resolution</span>
+              <select id="size" class="ring-soft mt-1 w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm">
+                <option value="1080x1920">1080x1920 — 9:16 portrait</option>
+                <option value="1080x1350">1080x1350 — 4:5</option>
+                <option value="1080x1080">1080x1080 — 1:1</option>
+                <option value="1920x1080">1920x1080 — 16:9</option>
+              </select>
+            </label>
+
+            <div>
+              <span class="text-xs uppercase tracking-wider text-white/50">Fit mode</span>
+              <div class="mt-1 grid grid-cols-3 gap-1 bg-ink-800 hairline rounded-lg p-1 text-sm">
+                <button data-fit="cover"   class="fit-btn rounded-md px-2 py-1.5 bg-accent-600 text-ink-950 font-semibold">cover</button>
+                <button data-fit="contain" class="fit-btn rounded-md px-2 py-1.5 hover:bg-white/5">contain</button>
+                <button data-fit="blurpad" class="fit-btn rounded-md px-2 py-1.5 hover:bg-white/5">blurpad</button>
+              </div>
+            </div>
+
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-white/50">Pad color (contain)</span>
+              <input id="bg_color" value="black" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            </label>
+
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-white/50">Blur (blurpad — radius:power)</span>
+              <input id="bg_blur" value="24:1" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            </label>
+
+            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
+              <div>
+                <div class="text-sm">Family diversity</div>
+                <div class="text-[11px] text-white/50">Avoid same filename family</div>
+              </div>
+              <input type="checkbox" id="family_diversity" class="toggle" />
+            </label>
+
+            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
+              <div>
+                <div class="text-sm">Allow reuse</div>
+                <div class="text-[11px] text-white/50">Same clip can appear twice</div>
+              </div>
+              <input type="checkbox" id="allow_reuse" class="toggle" />
+            </label>
+
+            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
+              <div>
+                <div class="text-sm">Debug logging</div>
+                <div class="text-[11px] text-white/50">Verbose selection info</div>
+              </div>
+              <input type="checkbox" id="debug" class="toggle" checked />
+            </label>
+
+            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
+              <div>
+                <div class="text-sm">Mix source audio</div>
+                <div class="text-[11px] text-white/50">Blend clip audio</div>
+              </div>
+              <input type="checkbox" id="mix_source" class="toggle" checked />
+            </label>
+
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-white/50">Seed</span>
+              <input id="seed" value="42" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-white/50">Mix source dB</span>
+              <input id="mix_source_db" value="-15.0" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            </label>
+
+            <label class="block col-span-2">
+              <span class="text-xs uppercase tracking-wider text-white/50">Exclude files (comma separated)</span>
+              <input id="exclude_files" placeholder="fight_1_m-mw.mp4, run_2.mp4" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            </label>
+          </div>
+        </div>
+
+        <!-- Hardsub panel -->
+        <div data-panel="hardsub" hidden>
+          <p class="panel-desc">Passed to <span class="font-mono text-white/70">burn_hardsub_fit_ass.py</span>.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-white/50">Margin V ratio</span>
+              <input id="hardsub_margin_v_ratio" value="0.24" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-white/50">Base scale</span>
+              <input id="hardsub_base_scale" value="0.056" class="mt-1 ring-soft w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm font-mono" />
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-white/50">Color order</span>
+              <select id="hardsub_color_order" class="ring-soft mt-1 w-full bg-ink-800 hairline rounded-lg px-3 py-2 text-sm">
+                <option value="rgb">rgb</option>
+                <option value="bgr">bgr</option>
+              </select>
+            </label>
+            <label class="flex items-center justify-between bg-ink-800 hairline rounded-lg px-3 py-2.5">
+              <div>
+                <div class="text-sm">Keep font color</div>
+                <div class="text-[11px] text-white/50">--keep_font_color</div>
+              </div>
+              <input type="checkbox" id="hardsub_keep_font_color" class="toggle" checked />
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Run bar -->
+    <div class="glass hairline rounded-2xl p-5 flex items-center gap-4">
+      <button id="runBtn" class="px-5 py-3 rounded-xl bg-gradient-to-br from-accent-500 to-lime-400 text-ink-950 font-bold text-sm shadow-lg shadow-accent-600/20 hover:brightness-110 active:scale-[.98] transition">
+        ▶  Build video
+      </button>
+      <button id="cancelBtn" class="hidden px-4 py-3 rounded-xl bg-rose-400/10 text-rose-400 hairline text-sm">Cancel</button>
+      <div class="text-xs text-white/50">Runs the full pipeline against your current files.</div>
+    </div>
+  </section>
+
+  <!-- RIGHT: Output (same row as left section, defines row height) -->
+  <aside class="col-span-12 lg:col-span-5">
+    <div class="glass hairline rounded-2xl p-6 h-full flex flex-col">
+      <div class="flex items-center justify-between mb-4 shrink-0">
+        <h2 class="text-lg font-semibold">Output</h2>
+        <a id="downloadLink" href="#" class="hidden chip">download</a>
+      </div>
+      <div class="flex-1 grid place-items-center min-h-0">
+        <div class="mx-auto aspect-[9/16] max-w-[280px] w-full rounded-2xl overflow-hidden hairline bg-gradient-to-br from-ink-700 to-ink-900 relative grid place-items-center">
+          <video id="videoEl" class="hidden w-full h-full object-contain bg-black" controls></video>
+          <div id="videoPlaceholder" class="text-white/30 text-xs text-center px-4">
+            No video yet.<br/>Build the pipeline to see the result here.
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- BOTTOM: Console spans full width -->
+  <div class="col-span-12">
+    <div class="glass hairline rounded-2xl p-6">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-semibold">Console</h2>
+        <div class="flex items-center gap-2 text-xs text-white/50">
+          <span id="statusDot" class="w-2 h-2 rounded-full bg-white/30"></span>
+          <span id="statusText">idle</span>
+        </div>
+      </div>
+      <div id="console" class="h-80 overflow-auto rounded-lg bg-black/40 hairline p-3 font-mono text-[12px] leading-relaxed scroll-shadow">
+        <div class="text-white/40">$ awaiting command…</div>
+      </div>
+      <div class="mt-3 flex items-center gap-3">
+        <div class="flex-1 h-1.5 rounded-full bg-ink-800 overflow-hidden">
+          <div id="bar" class="h-full w-0 bg-gradient-to-r from-accent-500 to-lime-400 transition-all duration-200"></div>
+        </div>
+        <span id="pct" class="text-xs text-white/60 font-mono w-10 text-right">0%</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="max-w-7xl mx-auto px-6 pb-10 text-[11px] text-white/30">
+  PCC interface • FastAPI backend at <span class="font-mono">/api</span> • streams subprocess output via SSE.
+</footer>
+
+<script>
+  // ---------- helpers ----------
+  const $ = id => document.getElementById(id);
+  const stages = Array.from(document.querySelectorAll('.stage'));
+  const stageOrder = ['tts','srt','color','footage','hardsub'];
+  const toggleIds = {tts:'run_tts', srt:'run_srt', color:'run_color_fix', footage:'run_footage', hardsub:'run_hardsub'};
+  let activeJob = null;
+  let es = null;
+
+  // map stage id → DOM
+  const stageEl = {};
+  stages.forEach((el, i) => { stageEl[stageOrder[i]] = el; });
+
+  // ---------- tabs ----------
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('[data-panel]');
+  function showTab(id) {
+    tabBtns.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === id));
+    panels.forEach(p => p.hidden = p.dataset.panel !== id);
+    document.getElementById('wordCount').classList.toggle('hidden', id !== 'script');
+  }
+  tabBtns.forEach(t => t.addEventListener('click', () => showTab(t.dataset.tab)));
+  showTab('script');
+
+  // ---------- fit toggle ----------
+  let fit = 'cover';
+  document.querySelectorAll('.fit-btn').forEach(b => b.addEventListener('click', () => {
+    fit = b.dataset.fit;
+    document.querySelectorAll('.fit-btn').forEach(x => x.className = 'fit-btn rounded-md px-2 py-1.5 hover:bg-white/5');
+    b.className = 'fit-btn rounded-md px-2 py-1.5 bg-accent-600 text-ink-950 font-semibold';
+  }));
+
+  // ---------- script editor + word count ----------
+  const scriptEl = $('script');
+  function updateCount() {
+    const words = scriptEl.value.trim().split(/\s+/).filter(Boolean).length;
+    $('wordCount').textContent = words + ' words';
+  }
+  scriptEl.addEventListener('input', updateCount);
+
+  // ---------- bootstrap: load input.txt + file status ----------
+  async function bootstrap() {
+    try {
+      const [s, f] = await Promise.all([
+        fetch('/api/script').then(r => r.json()),
+        fetch('/api/files').then(r => r.json()),
+      ]);
+      scriptEl.value = s.script || '';
+      updateCount();
+      renderFileChips(f);
+    } catch (e) {
+      console.warn('bootstrap failed', e);
+    }
+  }
+  function renderFileChips(files) {
+    const order = ['input.txt','heart_all.wav','heart_all.srt','heart_all_visual.mp4'];
+    const wrap = $('fileChips'); wrap.innerHTML = '';
+    order.forEach(name => {
+      const has = files[name]?.exists;
+      const c = document.createElement('span');
+      c.className = 'chip';
+      c.style.color = has ? '#a3e635' : '#9ca3af';
+      c.style.background = has ? 'rgba(163,230,53,.08)' : 'rgba(255,255,255,.04)';
+      c.textContent = (has ? '✓ ' : '· ') + name;
+      wrap.appendChild(c);
+    });
+  }
+  bootstrap();
+
+  // ---------- console + status ----------
+  const cons = $('console');
+  function appendLog(line, level='out') {
+    const colors = { cmd:'text-accent-400', info:'text-white/70', ok:'text-lime-400', warn:'text-yellow-300', err:'text-rose-400', out:'text-white/70' };
+    const d = document.createElement('div');
+    d.className = colors[level] || 'text-white/70';
+    d.textContent = line;
+    cons.appendChild(d);
+    cons.scrollTop = cons.scrollHeight;
+  }
+  function setStatus(text, color) {
+    $('statusText').textContent = text;
+    $('statusDot').className = 'w-2 h-2 rounded-full ' + color;
+  }
+  function setStageStatus(id, status) {
+    const el = stageEl[id]; if (!el) return;
+    el.dataset.status = status;
+  }
+  function updateProgress() {
+    const total = stageOrder.length;
+    const done = stageOrder.filter(id => ['done','skipped'].includes(stageEl[id]?.dataset.status)).length;
+    const p = Math.round((done/total)*100);
+    $('bar').style.width = p + '%';
+    $('pct').textContent = p + '%';
+  }
+
+  // ---------- build payload ----------
+  function readConfig() {
+    return {
+      script: scriptEl.value,
+      out_video: 'heart_all_visual.mp4',
+      size: $('size').value,
+      fit,
+      bg_color: $('bg_color').value,
+      bg_blur: $('bg_blur').value,
+      seed: parseInt($('seed').value, 10) || 42,
+      epsilon: 0.05,
+      family_diversity: $('family_diversity').checked,
+      allow_reuse: $('allow_reuse').checked,
+      debug: $('debug').checked,
+      mix_source: $('mix_source').checked,
+      mix_source_db: parseFloat($('mix_source_db').value) || -15.0,
+      exclude_files: $('exclude_files').value.split(',').map(s => s.trim()).filter(Boolean),
+      run_tts: $('run_tts').checked,
+      run_srt: $('run_srt').checked,
+      run_color_fix: $('run_color_fix').checked,
+      run_footage: $('run_footage').checked,
+      run_hardsub: $('run_hardsub').checked,
+      hardsub_keep_font_color: $('hardsub_keep_font_color').checked,
+      hardsub_color_order: $('hardsub_color_order').value,
+      hardsub_margin_v_ratio: parseFloat($('hardsub_margin_v_ratio').value) || 0.24,
+      hardsub_base_scale: parseFloat($('hardsub_base_scale').value) || 0.056,
+    };
+  }
+
+  // ---------- run ----------
+  $('runBtn').addEventListener('click', startRun);
+  $('cancelBtn').addEventListener('click', async () => {
+    if (activeJob) {
+      await fetch('/api/cancel/' + activeJob, { method: 'POST' });
+    }
+  });
+
+  async function startRun() {
+    cons.innerHTML = '';
+    stageOrder.forEach(id => setStageStatus(id, $(toggleIds[id]).checked ? 'pending' : 'skipped'));
+    updateProgress();
+    setStatus('starting', 'bg-accent-400 pulse-dot');
+    $('runBtn').disabled = true; $('runBtn').classList.add('opacity-50');
+    $('cancelBtn').classList.remove('hidden');
+    $('videoEl').classList.add('hidden');
+    $('videoPlaceholder').classList.remove('hidden');
+    $('downloadLink').classList.add('hidden');
+
+    const res = await fetch('/api/run', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(readConfig()),
+    });
+    const { job_id } = await res.json();
+    activeJob = job_id;
+    setStatus('running', 'bg-accent-400 pulse-dot');
+
+    es = new EventSource('/api/stream/' + job_id);
+    es.onmessage = (ev) => {
+      const msg = JSON.parse(ev.data);
+      handleEvent(msg);
+    };
+    es.addEventListener('end', () => {
+      es.close(); es = null;
+      activeJob = null;
+      $('runBtn').disabled = false; $('runBtn').classList.remove('opacity-50');
+      $('cancelBtn').classList.add('hidden');
+    });
+    es.onerror = () => {
+      setStatus('disconnected', 'bg-rose-400');
+    };
+  }
+
+  function handleEvent(msg) {
+    const { kind, data } = msg;
+    if (kind === 'log') {
+      appendLog(data.line, data.level);
+    } else if (kind === 'stage') {
+      setStageStatus(data.id, data.status);
+      updateProgress();
+    } else if (kind === 'done') {
+      setStatus('done', 'bg-lime-400');
+      const url = '/api/video/' + encodeURIComponent(data.out_video) + '?t=' + Date.now();
+      const v = $('videoEl');
+      v.src = url; v.classList.remove('hidden');
+      $('videoPlaceholder').classList.add('hidden');
+      const a = $('downloadLink');
+      a.href = url; a.download = data.out_video; a.classList.remove('hidden');
+      fetch('/api/files').then(r => r.json()).then(renderFileChips);
+    } else if (kind === 'error') {
+      setStatus('error', 'bg-rose-400');
+      appendLog('[error] ' + data.message, 'err');
+    } else if (kind === 'stages') {
+      // initial stage list — already rendered statically; ignore
+    }
+  }
+</script>
+</body>
+</html>

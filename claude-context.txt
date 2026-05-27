@@ -1,0 +1,64 @@
+Script
+One sentence per line. Saved to input.txt when you build.
+
+76 words
+cat behavior is unbelievable. Your fluffy little friend does not sweat exactly like we do.
+They are completely covered in thick fur so they cool down a weird way.
+Their secret sweat spots are actually right on the bottom of their tiny paws.
+When they get super hot or really scared they leave cute wet footprints behind.
+They also lick their fur to stay perfectly chill on super sunny days.
+And trust me when I say 
+Pipeline
+Toggle which stages to run. Skipped stages reuse existing files.
+
+5 stages
+TTS — kokoro_heart.py
+
+Subtitles — stable-ts
+
+SRT color fix #00ff00 → #ff00ffff
+
+Build video — footage.py
+
+Burn hardsub — burn_hardsub_fit_ass.py
+
+Video options
+Passed to footage.py.
+
+Resolution 
+1080x1920 — 9:16 portrait
+Fit mode
+cover
+contain
+blurpad
+Pad color (contain) 
+black
+Blur (blurpad — radius:power) 
+24:1
+Family diversity
+Avoid same filename family
+
+Allow reuse
+Same clip can appear twice
+
+Debug logging
+Verbose selection info
+
+Mix source audio
+Blend clip audio
+
+Seed 
+42
+Mix source dB 
+-15.0
+Exclude files (comma separated) 
+fight_1_m-mw.mp4, run_2.mp4
+Hardsub options
+Margin V ratio 
+0.24
+Base scale 
+0.056
+Color order 
+rgb
+Keep font color
+--keep_font_color

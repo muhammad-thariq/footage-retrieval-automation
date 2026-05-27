@@ -220,8 +220,8 @@ def parse_srt_entries(srt_path: Path) -> List[Tuple[float, float, str, List[str]
 def build_word_timeline_from_srt(srt_path: Path) -> Tuple[List[str], List[float]]:
     """
     Create a flat word timeline across the SRT:
-      words[k]  -> lowercased token k
-      times[k]  -> estimated start time of that token
+        words[k]  -> lowercased token k
+        times[k]  -> estimated start time of that token
     If a cue has multiple tokens but no per-word times, distribute uniformly over the cue's duration.
     """
     entries = parse_srt_entries(srt_path)
@@ -263,14 +263,14 @@ def durations_from_line_boundaries(
 ) -> List[float]:
     """
     Compute durations by sentence boundaries:
-      boundary[0] = 0.0
-      boundary[i] = time of FIRST WORD of sentence i (i>=1) found in SRT timeline
-      last boundary = total_audio
-      dur[i] = boundary[i+1] - boundary[i]
+        boundary[0] = 0.0
+        boundary[i] = time of FIRST WORD of sentence i (i>=1) found in SRT timeline
+        last boundary = total_audio
+        dur[i] = boundary[i+1] - boundary[i]
     Robustness:
-      - Uses trigram→bigram→unigram of each sentence's opening tokens to locate first word reliably.
-      - Searches forward from previous match to ensure monotonic boundaries.
-      - If a boundary isn't found, it fills by splitting the remaining span evenly.
+        - Uses trigram→bigram→unigram of each sentence's opening tokens to locate first word reliably.
+        - Searches forward from previous match to ensure monotonic boundaries.
+        - If a boundary isn't found, it fills by splitting the remaining span evenly.
     """
     words, times = build_word_timeline_from_srt(srt_path)
     boundaries: List[Optional[float]] = [0.0]
@@ -876,8 +876,7 @@ def main():
                 idx, dbg = sel  # type: ignore
                 name = files[idx].name
                 before = counters.get(name, 0)
-                print(f"[debug] fallback embed: band_used={dbg.get('band_used')} top_sim={dbg.get('top_similarity'):.3f} "
-                      f"pool={dbg.get('pool_size')} min_count={dbg.get('min_count')}")
+                print(f"[debug] fallback embed: band_used={dbg.get('band_used')} top_sim={dbg.get('top_similarity'):.3f} "f"pool={dbg.get('pool_size')} min_count={dbg.get('min_count')}")
                 prev = dbg.get('pool_preview', [])
                 if prev:
                     show = ", ".join([f"{n}:{c}" for n,c in prev])
