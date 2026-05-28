@@ -13,6 +13,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import re
 import sys
 import uuid
 from pathlib import Path
@@ -156,6 +157,7 @@ async def run_pipeline(job_id: str, cfg: RunConfig):
     async def emit(kind: str, data: Any):
         await q.put({"kind": kind, "data": data})
 
+    final_video: str = cfg.out_video  # may be overridden by the hardsub stage
     try:
         # Persist script to input.txt before anything else
         if cfg.script.strip():
@@ -258,12 +260,23 @@ async def run_pipeline(job_id: str, cfg: RunConfig):
             ]
             if cfg.hardsub_keep_font_color:
                 args.append("--keep_font_color")
-            await run_cmd(args, emit)
+            # Capture the hardsub script's "[OK] Wrote <path> (...)" line so the
+            # UI previews/downloads the hardsubbed file, not the bare footage cut.
+            hardsub_re = re.compile(r"^\[OK\] Wrote (.+?) \(font=")
+            captured = await run_cmd(args, emit, capture_re=hardsub_re)
+            if captured:
+                hardsub_path = Path(captured.strip())
+                if hardsub_path.exists():
+                    final_video = hardsub_path.name
+                else:
+                    await emit("log", {"line": f"[hardsub] captured path missing on disk: {hardsub_path}", "level": "warn"})
+            else:
+                await emit("log", {"line": "[hardsub] could not parse output path; falling back to footage cut", "level": "warn"})
             await emit("stage", {"id": "hardsub", "status": "done"})
         else:
             await emit("stage", {"id": "hardsub", "status": "skipped"})
 
-        await emit("done", {"out_video": cfg.out_video})
+        await emit("done", {"out_video": final_video})
 
     except asyncio.CancelledError:
         await emit("log", {"line": "[run] cancelled by user", "level": "warn"})
@@ -276,10 +289,25 @@ async def run_pipeline(job_id: str, cfg: RunConfig):
         await q.put(None)
 
 
-async def run_cmd(cmd: list[str], emit) -> None:
+async def run_cmd(cmd: list[str], emit, capture_re: re.Pattern | None = None) -> str | None:
+    """Run a subprocess and stream stdout as log events.
+
+    If `capture_re` is given, returns the last regex match's group(1) (or the
+    full match if there is no group), so callers can extract values the child
+    only reports in its own output (e.g. the hardsub output filename).
+    """
     await emit("log", {"line": "$ " + " ".join(cmd), "level": "cmd"})
-    # Force UTF-8 on child stdio so Windows cp1252 doesn't choke on chars like →
-    env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"}
+    # Force UTF-8 on child stdio so Windows cp1252 doesn't choke on chars like →.
+    # FORCE_COLOR / CLICOLOR_FORCE persuade rich/click/colorama tools to keep
+    # emitting ANSI even though stdout is a pipe; the front-end parses them.
+    env = {
+        **os.environ,
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "FORCE_COLOR": "1",
+        "CLICOLOR_FORCE": "1",
+        "PY_COLORS": "1",
+    }
     proc = await asyncio.create_subprocess_exec(
         *cmd,
         stdin=asyncio.subprocess.DEVNULL,  # no interactive prompts — fail fast on EOF
@@ -289,6 +317,7 @@ async def run_cmd(cmd: list[str], emit) -> None:
         env=env,
     )
     assert proc.stdout is not None
+    captured: str | None = None
     try:
         while True:
             raw = await proc.stdout.readline()
@@ -296,6 +325,10 @@ async def run_cmd(cmd: list[str], emit) -> None:
                 break
             line = raw.decode("utf-8", errors="replace").rstrip("\r\n")
             if line:
+                if capture_re is not None:
+                    m = capture_re.search(line)
+                    if m:
+                        captured = m.group(1) if m.groups() else m.group(0)
                 await emit("log", {"line": line, "level": "out"})
     except asyncio.CancelledError:
         proc.kill()
@@ -303,6 +336,7 @@ async def run_cmd(cmd: list[str], emit) -> None:
     rc = await proc.wait()
     if rc != 0:
         raise RuntimeError(f"command exited {rc}: {' '.join(cmd)}")
+    return captured
 
 
 if __name__ == "__main__":

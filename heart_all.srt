@@ -171,7 +171,7 @@ of their <font color="#ff00ffff">tiny</font> paws.
 of their tiny <font color="#ff00ffff">paws.</font>
 
 44
-00:00:13,020 --> 00:00:13,120
+00:00:13,040 --> 00:00:13,120
 <font color="#ff00ffff">When</font> they
 
 45

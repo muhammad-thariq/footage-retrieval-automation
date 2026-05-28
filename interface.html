@@ -461,6 +461,44 @@
   #console .log-err  { color: var(--danger); }
   #console .log-out  { color: var(--ink-2); }
 
+  /* ANSI SGR colors emitted by child processes (tqdm, rich, colorama...).
+     Reuse the LED palette where the hue lines up so the console stays
+     consistent with the rest of the interface. */
+  #console .ansi-bold           { font-weight: 600; }
+  #console .ansi-dim            { opacity: 0.70; }
+  #console .ansi-italic         { font-style: italic; }
+  #console .ansi-underline      { text-decoration: underline; }
+  #console .ansi-black          { color: oklch(0.30 0.006 250); }
+  #console .ansi-red            { color: var(--led-error); }
+  #console .ansi-green          { color: var(--led-done); }
+  #console .ansi-yellow         { color: var(--led-run); }
+  #console .ansi-blue           { color: var(--led-idle); }
+  #console .ansi-magenta        { color: oklch(0.65 0.18 320); }
+  #console .ansi-cyan           { color: oklch(0.72 0.13 200); }
+  #console .ansi-white          { color: var(--ink-1); }
+  #console .ansi-bright-black   { color: var(--ink-3); }
+  #console .ansi-bright-red     { color: oklch(0.72 0.18 28); }
+  #console .ansi-bright-green   { color: oklch(0.78 0.18 145); }
+  #console .ansi-bright-yellow  { color: oklch(0.88 0.16 95); }
+  #console .ansi-bright-blue    { color: oklch(0.72 0.16 250); }
+  #console .ansi-bright-magenta { color: oklch(0.75 0.18 320); }
+  #console .ansi-bright-cyan    { color: oklch(0.78 0.13 200); }
+  #console .ansi-bright-white   { color: var(--ink-1); }
+
+  /* Pattern-based highlighting for bracketed tags emitted by our pipeline
+     scripts and ffmpeg. The tools don't emit ANSI, so we semanticize the
+     conventional prefixes ([OK], [DEBUG], [libx264 @ ...], etc.). */
+  #console .log-tag        { font-weight: 600; }
+  #console .log-tag-ok     { color: var(--led-done);  font-weight: 600; }
+  #console .log-tag-err    { color: var(--led-error); font-weight: 600; }
+  #console .log-tag-warn   { color: var(--led-run);   font-weight: 600; }
+  #console .log-tag-info   { color: var(--led-idle);  font-weight: 600; }
+  #console .log-tag-debug  { color: var(--ink-3);     font-weight: 600; }
+  #console .log-tag-stage  { color: oklch(0.72 0.13 200); font-weight: 600; }   /* cyan: pipeline progress */
+  #console .log-tag-ff     { color: oklch(0.65 0.18 320); font-weight: 500; }   /* magenta: ffmpeg internals */
+  #console .log-num        { color: var(--ink-1); }
+  #console .log-key        { color: var(--ink-3); }
+
   /* === Progress === */
   .progress {
     flex: 1;
@@ -884,11 +922,135 @@
 
   // ---------- console + status ----------
   const cons = $('console');
+
+  // Minimal ANSI SGR -> HTML renderer. Handles foreground colors (30-37 / 90-97),
+  // bold/dim/italic/underline, and reset (0/22/23/24/39). Background, 256-color
+  // and true-color sequences are stripped silently — subprocesses rarely need
+  // them in a log stream, and ignoring them is safer than half-rendering.
+  const ANSI_FG = {
+    '30':'ansi-black','31':'ansi-red','32':'ansi-green','33':'ansi-yellow',
+    '34':'ansi-blue','35':'ansi-magenta','36':'ansi-cyan','37':'ansi-white',
+    '90':'ansi-bright-black','91':'ansi-bright-red','92':'ansi-bright-green',
+    '93':'ansi-bright-yellow','94':'ansi-bright-blue','95':'ansi-bright-magenta',
+    '96':'ansi-bright-cyan','97':'ansi-bright-white',
+  };
+  function escapeHTML(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  }
+  function ansiToHTML(line) {
+    // Strip cursor / control sequences other than SGR (final byte 'm').
+    // Also strip standalone \r (carriage returns inside tqdm progress lines).
+    const stripped = line.replace(/\x1b\[[0-9;?]*[A-HJKSTfsu]/g, '').replace(/\r(?!\n)/g, '');
+    const re = /\x1b\[([0-9;]*)m/g;
+    let out = '', last = 0, fg = null;
+    const flags = { bold:false, dim:false, italic:false, underline:false };
+    function flush(idx) {
+      const chunk = stripped.slice(last, idx);
+      if (!chunk) return;
+      const cls = [
+        fg,
+        flags.bold ? 'ansi-bold' : null,
+        flags.dim ? 'ansi-dim' : null,
+        flags.italic ? 'ansi-italic' : null,
+        flags.underline ? 'ansi-underline' : null,
+      ].filter(Boolean).join(' ');
+      out += cls ? `<span class="${cls}">${escapeHTML(chunk)}</span>` : escapeHTML(chunk);
+    }
+    let m;
+    while ((m = re.exec(stripped)) !== null) {
+      flush(m.index);
+      const codes = (m[1] || '0').split(';');
+      let i = 0;
+      while (i < codes.length) {
+        const c = codes[i];
+        if (c === '' || c === '0') { fg = null; flags.bold = flags.dim = flags.italic = flags.underline = false; }
+        else if (c === '1') flags.bold = true;
+        else if (c === '2') flags.dim = true;
+        else if (c === '3') flags.italic = true;
+        else if (c === '4') flags.underline = true;
+        else if (c === '22') { flags.bold = false; flags.dim = false; }
+        else if (c === '23') flags.italic = false;
+        else if (c === '24') flags.underline = false;
+        else if (c === '39') fg = null;
+        else if (ANSI_FG[c]) fg = ANSI_FG[c];
+        else if (c === '38' && codes[i+1] === '5') { i += 2; /* skip 256-color index */ }
+        else if (c === '38' && codes[i+1] === '2') { i += 4; /* skip true-color r;g;b */ }
+        i += 1;
+      }
+      last = re.lastIndex;
+    }
+    flush(stripped.length);
+    return out;
+  }
+
+  // Pattern-based highlighter applied to the (already-escaped) HTML output of
+  // ansiToHTML. Recognizes leading [TAG] prefixes and key=value pairs in
+  // ffmpeg progress lines. Skips matches inside existing <span>...</span>.
+  function classifyTag(raw) {
+    const t = raw.toLowerCase().trim();
+    if (/@\s*[0-9a-f]{6,}/i.test(t) || /^(parsed_|libx264|libass|mp4|swscaler|out#|stream)/i.test(t)) return 'log-tag-ff';
+    if (/^(ok|done|\+)$/.test(t)) return 'log-tag-ok';
+    if (/^(err|error|fail|fatal)$/.test(t)) return 'log-tag-err';
+    if (/^(warn|warning)$/.test(t)) return 'log-tag-warn';
+    if (/^(info|setup|srt|color|post)$/.test(t)) return 'log-tag-info';
+    if (t === 'debug') return 'log-tag-debug';
+    if (/^(progress|rank|pool|pick|apply|pair|timeline)$/.test(t)) return 'log-tag-stage';
+    return 'log-tag';
+  }
+  function highlightPlainSegment(s, isLineStart) {
+    // Single multi-alternate regex so transformations don't fight each other.
+    // The two `^`-anchored alternates only fire when isLineStart is true.
+    const re = isLineStart
+      ? /^(\s*)(\[)([^\]<>]+)(\])|^(WARNING|Warning|WARN|ERROR|Error|FATAL):|\b([a-zA-Z_][a-zA-Z_0-9]*)(=)(\s*)([^\s<>]+)/g
+      : /\b([a-zA-Z_][a-zA-Z_0-9]*)(=)(\s*)([^\s<>]+)/g;
+    return s.replace(re, (...args) => {
+      // Long-arity callback; pull groups by index. The non-line-start regex has
+      // 4 capture groups (mapped to key/eq/ws/val), the line-start regex has 9.
+      const groups = args.slice(1, -2);
+      if (isLineStart) {
+        const [pre, lb, tag, rb, kw, k, eq, ws, v] = groups;
+        if (tag !== undefined) {
+          return `${pre}<span class="${classifyTag(tag)}">${lb}${tag}${rb}</span>`;
+        }
+        if (kw !== undefined) {
+          const cls = /warn/i.test(kw) ? 'log-tag-warn' : 'log-tag-err';
+          return `<span class="${cls}">${kw}:</span>`;
+        }
+        if (k !== undefined) {
+          return `<span class="log-key">${k}</span>${eq}${ws}<span class="log-num">${v}</span>`;
+        }
+      } else {
+        const [k, eq, ws, v] = groups;
+        return `<span class="log-key">${k}</span>${eq}${ws}<span class="log-num">${v}</span>`;
+      }
+      return args[0];
+    });
+  }
+  function highlightTokens(html) {
+    // Split out any spans that ansiToHTML already produced and only highlight
+    // the plain-text segments between them. This avoids matching key=value
+    // inside attributes like class="ansi-red".
+    const tagRe = /<[^>]*>/g;
+    let out = '', last = 0, m, atLineStart = true;
+    while ((m = tagRe.exec(html)) !== null) {
+      const plain = html.slice(last, m.index);
+      if (plain) {
+        out += highlightPlainSegment(plain, atLineStart);
+        atLineStart = false;
+      }
+      out += m[0];
+      last = tagRe.lastIndex;
+    }
+    const tail = html.slice(last);
+    if (tail) out += highlightPlainSegment(tail, atLineStart);
+    return out;
+  }
+
   function appendLog(line, level) {
     level = level || 'out';
     const d = document.createElement('div');
     d.className = 'log-line log-' + level;
-    d.textContent = line;
+    d.innerHTML = highlightTokens(ansiToHTML(line));
     cons.appendChild(d);
     cons.scrollTop = cons.scrollHeight;
   }
@@ -974,7 +1136,7 @@
     try {
       const res = await fetch('/api/run', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },    
         body: JSON.stringify(readConfig()),
       });
       const { job_id } = await res.json();
