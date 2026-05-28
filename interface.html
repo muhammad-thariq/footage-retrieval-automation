@@ -6,7 +6,7 @@
 <title>Footage Retrieval Automation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -40,8 +40,8 @@
           },
         },
         fontFamily: {
-          sans: ['Inter', 'system-ui', 'sans-serif'],
-          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          sans: ['Poppins', 'system-ui', 'sans-serif'],
+          mono: ['Poppins', 'system-ui', 'sans-serif'],
         },
       }
     }
@@ -78,7 +78,7 @@
   html, body {
     background: var(--surface-0);
     color: var(--ink-2);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', system-ui, sans-serif;
     font-feature-settings: 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
   }
@@ -101,7 +101,7 @@
   .label {
     font-size: 10px;
     font-weight: 500;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.09em;
     color: var(--ink-3);
     display: block;
@@ -116,7 +116,7 @@
     border-radius: 3px;
     padding: 7px 9px;
     font-size: 12px;
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'Poppins', system-ui, sans-serif;
     width: 100%;
     transition: border-color 160ms var(--ease-out), background 160ms var(--ease-out);
   }
@@ -171,7 +171,7 @@
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
+    text-transform: none;
     cursor: pointer;
     transition: color 160ms var(--ease-out);
   }
@@ -201,7 +201,7 @@
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.06em;
-    text-transform: uppercase;
+    text-transform: none;
     cursor: pointer;
     border-radius: 2px;
     transition: color 160ms var(--ease-out), background 160ms var(--ease-out);
@@ -242,7 +242,7 @@
     min-width: 0;
   }
   .stage .lbl .src {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'Poppins', system-ui, sans-serif;
     font-size: 11px;
     color: var(--ink-4);
     white-space: nowrap;
@@ -250,9 +250,9 @@
     text-overflow: ellipsis;
   }
   .stage .state {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'Poppins', system-ui, sans-serif;
     font-size: 10px;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.09em;
     color: var(--ink-4);
     text-align: right;
@@ -300,9 +300,9 @@
     border: 1px solid var(--line-soft);
     background: var(--surface-1);
     border-radius: 3px;
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'Poppins', system-ui, sans-serif;
     font-size: 10px;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.12em;
     color: var(--ink-2);
     transition: border-color 200ms var(--ease-out), color 200ms var(--ease-out), background 200ms var(--ease-out);
@@ -338,7 +338,7 @@
     align-items: center;
     gap: 12px;
     padding: 7px 12px;
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'Poppins', system-ui, sans-serif;
     font-size: 11px;
     border-top: 1px solid var(--line-soft);
   }
@@ -357,7 +357,7 @@
   .filerow[data-has="true"] .name { color: var(--ink-1); }
   .filerow .state {
     font-size: 9.5px;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.1em;
     color: var(--ink-4);
   }
@@ -372,11 +372,11 @@
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.14em;
-    text-transform: uppercase;
+    text-transform: none;
     border-radius: 3px;
     cursor: pointer;
     transition: filter 140ms var(--ease-out), transform 80ms var(--ease-out);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', system-ui, sans-serif;
   }
   .btn-primary:hover:not(:disabled) { filter: brightness(1.08); }
   .btn-primary:active:not(:disabled) { transform: translateY(1px); }
@@ -394,10 +394,10 @@
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.1em;
-    text-transform: uppercase;
+    text-transform: none;
     border-radius: 3px;
     cursor: pointer;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', system-ui, sans-serif;
     transition: background 140ms var(--ease-out), color 140ms var(--ease-out);
   }
   .btn-ghost:hover { background: var(--surface-3); color: var(--ink-1); }
@@ -410,10 +410,10 @@
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.1em;
-    text-transform: uppercase;
+    text-transform: none;
     border-radius: 3px;
     cursor: pointer;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', system-ui, sans-serif;
     transition: background 140ms var(--ease-out), border-color 140ms var(--ease-out);
   }
   .btn-danger:hover { background: var(--danger-soft); border-color: var(--danger); }
@@ -435,7 +435,7 @@
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.1em;
-    text-transform: uppercase;
+    text-transform: none;
     color: var(--ink-3);
   }
 
@@ -521,7 +521,7 @@
     background: var(--surface-1);
     border: 1px solid var(--line-soft);
     color: var(--ink-1);
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'Poppins', system-ui, sans-serif;
     font-size: 12.5px;
     line-height: 1.7;
     padding: 14px 16px;
@@ -535,7 +535,7 @@
   textarea#script::placeholder { color: var(--ink-4); }
 
   /* === Footer text === */
-  footer code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  footer code, .mono { font-family: 'Poppins', system-ui, sans-serif; }
 
   /* === Preview === */
   .preview-frame {
@@ -580,12 +580,12 @@
   <div class="max-w-[1320px] mx-auto px-8 py-3 flex items-center gap-6">
     <div class="flex items-baseline gap-3">
       <div class="text-[15px] font-bold tracking-tight text-ink-1">Footage Retrieval Automation</div>
-      <div class="text-[10px] uppercase tracking-[0.14em] text-ink-3 mono">Short-form Video Builder</div>
+      <div class="text-[10px] tracking-[0.14em] text-ink-3 mono">Short-form Video Builder</div>
     </div>
     <div class="ml-auto flex items-center gap-3">
       <span id="tally" class="tally" data-state="idle">
         <span class="led"></span>
-        <span id="tallyText">IDLE</span>
+        <span id="tallyText">Idle</span>
       </span>
     </div>
   </div>
@@ -605,7 +605,7 @@
         <button data-tab="video"    class="tab-btn" aria-selected="false">Video</button>
         <button data-tab="hardsub"  class="tab-btn" aria-selected="false">Hardsub</button>
         <div class="ml-auto pr-4">
-          <span id="wordCount" class="mono text-[10px] uppercase tracking-[0.1em] text-ink-3">0 words</span>
+          <span id="wordCount" class="mono text-[10px] tracking-[0.1em] text-ink-3">0 words</span>
         </div>
       </nav>
 
@@ -614,7 +614,7 @@
         <!-- ===== Script ===== -->
         <div data-panel="script" class="h-full flex flex-col">
           <div class="flex items-baseline justify-between mb-3 shrink-0">
-            <h2 class="text-[12px] font-medium tracking-[0.1em] uppercase text-ink-3">Script</h2>
+            <h2 class="text-[12px] font-medium tracking-[0.1em] text-ink-3">Script</h2>
             <span class="text-[10.5px] text-ink-4 mono">writes to input.txt on build</span>
           </div>
           <textarea id="script" class="flex-1" placeholder="One sentence per line. Each line becomes a clip in the timeline."></textarea>
@@ -623,7 +623,7 @@
         <!-- ===== Pipeline ===== -->
         <div data-panel="pipeline" hidden>
           <div class="flex items-baseline justify-between mb-3">
-            <h2 class="text-[12px] font-medium tracking-[0.1em] uppercase text-ink-3">Pipeline</h2>
+            <h2 class="text-[12px] font-medium tracking-[0.1em] text-ink-3">Pipeline</h2>
             <span class="text-[10.5px] text-ink-4 mono">toggle stages, skipped stages reuse existing files</span>
           </div>
           <div class="panel">
@@ -631,31 +631,31 @@
               <span class="led"></span>
               <span class="lbl">TTS <span class="src">kokoro_heart.py</span></span>
               <input type="checkbox" id="run_tts" class="toggle" checked />
-              <span class="state">PENDING</span>
+              <span class="state">Pending</span>
             </div>
             <div class="stage" data-status="pending">
               <span class="led"></span>
               <span class="lbl">Subtitles <span class="src">stable-ts</span></span>
               <input type="checkbox" id="run_srt" class="toggle" checked />
-              <span class="state">PENDING</span>
+              <span class="state">Pending</span>
             </div>
             <div class="stage" data-status="pending">
               <span class="led"></span>
               <span class="lbl">Color fix <span class="src">00ff00 → ff00ffff</span></span>
               <input type="checkbox" id="run_color_fix" class="toggle" checked />
-              <span class="state">PENDING</span>
+              <span class="state">Pending</span>
             </div>
             <div class="stage" data-status="pending">
               <span class="led"></span>
               <span class="lbl">Footage <span class="src">footage.py</span></span>
               <input type="checkbox" id="run_footage" class="toggle" checked />
-              <span class="state">PENDING</span>
+              <span class="state">Pending</span>
             </div>
             <div class="stage" data-status="pending">
               <span class="led"></span>
               <span class="lbl">Hardsub <span class="src">burn_hardsub_fit_ass.py</span></span>
               <input type="checkbox" id="run_hardsub" class="toggle" checked />
-              <span class="state">PENDING</span>
+              <span class="state">Pending</span>
             </div>
           </div>
         </div>
@@ -663,7 +663,7 @@
         <!-- ===== Video ===== -->
         <div data-panel="video" hidden>
           <div class="flex items-baseline justify-between mb-3">
-            <h2 class="text-[12px] font-medium tracking-[0.1em] uppercase text-ink-3">Video</h2>
+            <h2 class="text-[12px] font-medium tracking-[0.1em] text-ink-3">Video</h2>
             <span class="text-[10.5px] text-ink-4 mono">passes flags to footage.py</span>
           </div>
 
@@ -747,7 +747,7 @@
         <!-- ===== Hardsub ===== -->
         <div data-panel="hardsub" hidden>
           <div class="flex items-baseline justify-between mb-3">
-            <h2 class="text-[12px] font-medium tracking-[0.1em] uppercase text-ink-3">Hardsub</h2>
+            <h2 class="text-[12px] font-medium tracking-[0.1em] text-ink-3">Hardsub</h2>
             <span class="text-[10.5px] text-ink-4 mono">passes flags to burn_hardsub_fit_ass.py</span>
           </div>
 
@@ -804,12 +804,12 @@
     <div class="panel flex-1 flex flex-col">
       <div class="panel-header">
         <div class="panel-title">Preview</div>
-        <a id="downloadLink" href="#" class="ml-auto hidden text-[10px] mono text-signal uppercase tracking-[0.1em] hover:underline">download mp4 ↓</a>
+        <a id="downloadLink" href="#" class="ml-auto hidden text-[10px] mono text-signal tracking-[0.1em] hover:underline">download mp4 ↓</a>
       </div>
       <div class="p-5 flex-1 grid place-items-center">
         <div class="preview-frame">
           <video id="videoEl" class="hidden" controls></video>
-          <div id="videoPlaceholder" class="text-ink-4 text-[10.5px] mono text-center leading-relaxed px-4 uppercase tracking-[0.08em]">
+          <div id="videoPlaceholder" class="text-ink-4 text-[10.5px] mono text-center leading-relaxed px-4 tracking-[0.08em]">
             No video yet.<br/>Build to populate.
           </div>
         </div>
@@ -822,7 +822,7 @@
     <div class="panel">
       <div class="panel-header">
         <div class="panel-title">Console</div>
-        <div class="ml-auto flex items-center gap-3 text-[10px] mono uppercase tracking-[0.1em] text-ink-3">
+        <div class="ml-auto flex items-center gap-3 text-[10px] mono tracking-[0.1em] text-ink-3">
           <span id="statusText">idle</span>
         </div>
       </div>
@@ -842,7 +842,7 @@
 
 </main>
 
-<footer class="max-w-[1320px] mx-auto px-8 pb-10 pt-2 text-[10px] text-ink-4 mono uppercase tracking-[0.12em]">
+<footer class="max-w-[1320px] mx-auto px-8 pb-10 pt-2 text-[10px] text-ink-4 mono tracking-[0.12em]">
   FastAPI backend on <code class="text-ink-3">/api</code>. Subprocess output streams via SSE.
 </footer>
 
@@ -852,7 +852,7 @@
   const stages = Array.from(document.querySelectorAll('.stage'));
   const stageOrder = ['tts','srt','color','footage','hardsub'];
   const toggleIds = {tts:'run_tts', srt:'run_srt', color:'run_color_fix', footage:'run_footage', hardsub:'run_hardsub'};
-  const stateLabel = {pending:'PENDING', running:'RUNNING', done:'DONE', error:'ERROR', skipped:'SKIP'};
+  const stateLabel = {pending:'Pending', running:'Running', done:'Done', error:'Error', skipped:'Skip'};
   let activeJob = null;
   let es = null;
 
@@ -914,7 +914,7 @@
       row.innerHTML =
         '<span class="led"></span>' +
         '<span class="name">' + name + '</span>' +
-        '<span class="state">' + (has ? 'READY' : 'MISSING') + '</span>';
+        '<span class="state">' + (has ? 'Ready' : 'Missing') + '</span>';
       wrap.appendChild(row);
     });
   }
@@ -1058,19 +1058,19 @@
     $('statusText').textContent = text;
     $('tally').dataset.state = state;
     $('tallyText').textContent = ({
-      idle: 'IDLE',
-      starting: 'INIT',
-      running: 'RUN',
-      done: 'DONE',
-      error: 'ERR',
-      disconnected: 'OFFLINE',
-    })[state] || 'IDLE';
+      idle: 'Idle',
+      starting: 'Init',
+      running: 'Run',
+      done: 'Done',
+      error: 'Err',
+      disconnected: 'Offline',
+    })[state] || 'Idle';
   }
   function setStageStatus(id, status) {
     const el = stageEl[id]; if (!el) return;
     el.dataset.status = status;
     const stateEl = el.querySelector('.state');
-    if (stateEl) stateEl.textContent = stateLabel[status] || status.toUpperCase();
+    if (stateEl) stateEl.textContent = stateLabel[status] || (status.charAt(0).toUpperCase() + status.slice(1));
   }
   function updateProgress(opts) {
     opts = opts || {};
