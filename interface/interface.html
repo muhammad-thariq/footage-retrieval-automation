@@ -601,7 +601,6 @@
     <div class="panel flex flex-col flex-1 min-h-0">
       <nav class="flex items-center border-b border-line-soft" role="tablist">
         <button data-tab="script"   class="tab-btn" aria-selected="true">Script</button>
-        <button data-tab="pipeline" class="tab-btn" aria-selected="false">Pipeline</button>
         <button data-tab="video"    class="tab-btn" aria-selected="false">Video</button>
         <button data-tab="hardsub"  class="tab-btn" aria-selected="false">Hardsub</button>
         <div class="ml-auto pr-4">
@@ -611,23 +610,26 @@
 
       <div class="p-6 overflow-y-auto flex-1 min-h-0">
 
-        <!-- ===== Script ===== -->
-        <div data-panel="script" class="h-full flex flex-col">
-          <div class="flex items-baseline justify-between mb-3 shrink-0">
-            <h2 class="text-[12px] font-medium tracking-[0.1em] text-ink-3">Script</h2>
-            <span class="text-[10.5px] text-ink-4 mono">writes to input.txt on build</span>
-          </div>
-          <textarea id="script" class="flex-1" placeholder="One sentence per line. Each line becomes a clip in the timeline."></textarea>
-        </div>
+        <!-- ===== Script (top half) + Pipeline (bottom half) ===== -->
+        <div data-panel="script" class="h-full flex flex-col gap-5">
 
-        <!-- ===== Pipeline ===== -->
-        <div data-panel="pipeline" hidden>
-          <div class="flex items-baseline justify-between mb-3">
-            <h2 class="text-[12px] font-medium tracking-[0.1em] text-ink-3">Pipeline</h2>
-            <span class="text-[10.5px] text-ink-4 mono">toggle stages, skipped stages reuse existing files</span>
+          <!-- top half: script editor -->
+          <div class="flex flex-col flex-1 min-h-0">
+            <div class="flex items-baseline justify-between mb-3 shrink-0">
+              <h2 class="text-[12px] font-medium tracking-[0.1em] text-ink-3">Script</h2>
+              <span class="text-[10.5px] text-ink-4 mono">writes to input.txt on build</span>
+            </div>
+            <textarea id="script" class="flex-1" placeholder="One sentence per line. Each line becomes a clip in the timeline."></textarea>
           </div>
-          <div class="panel">
-            <div class="stage" data-status="pending">
+
+          <!-- bottom half: pipeline -->
+          <div class="flex flex-col flex-1 min-h-0">
+            <div class="flex items-baseline justify-between mb-3 shrink-0 mt-3">
+              <h2 class="text-[12px] font-medium tracking-[0.1em] text-ink-3">Pipeline</h2>
+              <span class="text-[10.5px] text-ink-4 mono">toggle stages, skipped stages reuse existing files</span>
+            </div>
+            <div class="panel">
+              <div class="stage" data-status="pending">
               <span class="led"></span>
               <span class="lbl">TTS <span class="src">kokoro_heart.py</span></span>
               <input type="checkbox" id="run_tts" class="toggle" checked />
@@ -656,6 +658,7 @@
               <span class="lbl">Hardsub <span class="src">burn_hardsub_fit_ass.py</span></span>
               <input type="checkbox" id="run_hardsub" class="toggle" checked />
               <span class="state">Pending</span>
+            </div>
             </div>
           </div>
         </div>
