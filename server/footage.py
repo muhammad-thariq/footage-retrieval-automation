@@ -596,10 +596,10 @@ def _fmt_ts(t: float) -> str:
 def main():
     p=argparse.ArgumentParser(description="Build video matching WAV using keyword classification + sentence-boundary durations.")
     p.add_argument("--footage_dir", type=str, default="footage")
-    p.add_argument("--input_txt",   type=str, default="input.txt", help="One sentence per line.")
-    p.add_argument("--subs_srt",    type=str, default="heart_all.srt", help="Subtitle SRT aligned to the audio.")
-    p.add_argument("--audio_wav",   type=str, default="heart_all.wav")
-    p.add_argument("--out_video",   type=str, default="heart_all_visual.mp4")
+    p.add_argument("--input_txt",   type=str, default="temp/input.txt", help="One sentence per line.")
+    p.add_argument("--subs_srt",    type=str, default="temp/heart_all.srt", help="Subtitle SRT aligned to the audio.")
+    p.add_argument("--audio_wav",   type=str, default="temp/heart_all.wav")
+    p.add_argument("--out_video",   type=str, default="temp/heart_all_visual.mp4")
 
     # selection/matching
     p.add_argument("--model", type=str, default="all-MiniLM-L6-v2")
@@ -629,6 +629,8 @@ def main():
     srt_path=Path(args.subs_srt); out_video=Path(args.out_video)
     counters_path=footage_dir/args.counters_file; embed_cache=footage_dir/args.embed_cache
 
+    if out_video.parent and not out_video.parent.exists():
+        out_video.parent.mkdir(parents=True, exist_ok=True)
     if not footage_dir.exists(): raise FileNotFoundError(f"Footage folder not found: {footage_dir}")
     if not input_txt.exists():   raise FileNotFoundError(f"Input file not found: {input_txt}")
     if not srt_path.exists():    raise FileNotFoundError(f"SRT file not found: {srt_path}")
@@ -1007,8 +1009,8 @@ if __name__ == "__main__":
             return default
 
     try:
-        out_video = Path(_arg_val("--out_video", "heart_all_visual.mp4"))
-        audio_wav = Path(_arg_val("--audio_wav", "heart_all.wav"))
+        out_video = Path(_arg_val("--out_video", "temp/heart_all_visual.mp4"))
+        audio_wav = Path(_arg_val("--audio_wav", "temp/heart_all.wav"))
         if out_video.exists() and audio_wav.exists():
             target = audio_duration(audio_wav)
             tmp_fix = out_video.with_name(out_video.stem + "_durfix.mp4")

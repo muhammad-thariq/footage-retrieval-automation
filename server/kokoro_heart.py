@@ -10,8 +10,8 @@ import numpy as np
 from pathlib import Path
 import re
 
-INPUT_FILE = Path("input.txt")
-OUTPUT_WAV = Path("heart_all.wav")
+INPUT_FILE = Path("temp/input.txt")
+OUTPUT_WAV = Path("temp/heart_all.wav")
 LANG = "a"           # American English
 VOICE = "af_heart"   # heart voice
 SPEED = 1.25

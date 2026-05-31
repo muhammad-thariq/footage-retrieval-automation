@@ -1,0 +1,323 @@
+1
+00:00:00,220 --> 00:00:00,320
+<font color="#ff00ffff">You</font> will never
+
+2
+00:00:00,320 --> 00:00:00,400
+You <font color="#ff00ffff">will</font> never
+
+3
+00:00:00,400 --> 00:00:00,580
+You will <font color="#ff00ffff">never</font>
+
+4
+00:00:00,580 --> 00:00:00,820
+<font color="#ff00ffff">look</font> at cats
+
+5
+00:00:00,820 --> 00:00:00,940
+look <font color="#ff00ffff">at</font> cats
+
+6
+00:00:00,940 --> 00:00:01,160
+look at <font color="#ff00ffff">cats</font>
+
+7
+00:00:01,160 --> 00:00:01,340
+<font color="#ff00ffff">the</font> same way
+
+8
+00:00:01,340 --> 00:00:01,540
+the <font color="#ff00ffff">same</font> way
+
+9
+00:00:01,540 --> 00:00:01,780
+the same <font color="#ff00ffff">way</font>
+
+10
+00:00:01,780 --> 00:00:02,040
+<font color="#ff00ffff">once</font> you learn why
+
+11
+00:00:02,040 --> 00:00:02,160
+once <font color="#ff00ffff">you</font> learn why
+
+12
+00:00:02,160 --> 00:00:02,340
+once you <font color="#ff00ffff">learn</font> why
+
+13
+00:00:02,340 --> 00:00:02,580
+once you learn <font color="#ff00ffff">why</font>
+
+14
+00:00:02,580 --> 00:00:02,720
+<font color="#ff00ffff">they</font> knock things over.
+
+15
+00:00:02,720 --> 00:00:02,900
+they <font color="#ff00ffff">knock</font> things over.
+
+16
+00:00:02,900 --> 00:00:03,140
+they knock <font color="#ff00ffff">things</font> over.
+
+17
+00:00:03,140 --> 00:00:03,460
+they knock things <font color="#ff00ffff">over.</font>
+
+18
+00:00:03,960 --> 00:00:04,060
+<font color="#ff00ffff">They</font> use their
+
+19
+00:00:04,060 --> 00:00:04,240
+They <font color="#ff00ffff">use</font> their
+
+20
+00:00:04,240 --> 00:00:04,400
+They use <font color="#ff00ffff">their</font>
+
+21
+00:00:04,400 --> 00:00:04,600
+<font color="#ff00ffff">little</font> paws to swat
+
+22
+00:00:04,600 --> 00:00:04,820
+little <font color="#ff00ffff">paws</font> to swat
+
+23
+00:00:04,820 --> 00:00:05,060
+little paws <font color="#ff00ffff">to</font> swat
+
+24
+00:00:05,060 --> 00:00:05,280
+little paws to <font color="#ff00ffff">swat</font>
+
+25
+00:00:05,280 --> 00:00:05,420
+<font color="#ff00ffff">your</font> stuff just
+
+26
+00:00:05,420 --> 00:00:05,680
+your <font color="#ff00ffff">stuff</font> just
+
+27
+00:00:05,680 --> 00:00:06,060
+your stuff <font color="#ff00ffff">just</font>
+
+28
+00:00:06,060 --> 00:00:06,300
+<font color="#ff00ffff">to</font> see what happens.
+
+29
+00:00:06,300 --> 00:00:06,460
+to <font color="#ff00ffff">see</font> what happens.
+
+30
+00:00:06,460 --> 00:00:06,600
+to see <font color="#ff00ffff">what</font> happens.
+
+31
+00:00:06,600 --> 00:00:06,880
+to see what <font color="#ff00ffff">happens.</font>
+
+32
+00:00:07,480 --> 00:00:07,580
+<font color="#ff00ffff">Their</font> tiny foot
+
+33
+00:00:07,580 --> 00:00:07,860
+Their <font color="#ff00ffff">tiny</font> foot
+
+34
+00:00:07,860 --> 00:00:08,100
+Their tiny <font color="#ff00ffff">foot</font>
+
+35
+00:00:08,100 --> 00:00:08,400
+<font color="#ff00ffff">pads</font> gather lots of
+
+36
+00:00:08,400 --> 00:00:08,800
+pads <font color="#ff00ffff">gather</font> lots of
+
+37
+00:00:08,800 --> 00:00:09,140
+pads gather <font color="#ff00ffff">lots</font> of
+
+38
+00:00:09,140 --> 00:00:09,340
+pads gather lots <font color="#ff00ffff">of</font>
+
+39
+00:00:09,340 --> 00:00:09,520
+<font color="#ff00ffff">clues</font> about what the
+
+40
+00:00:09,520 --> 00:00:09,880
+clues <font color="#ff00ffff">about</font> what the
+
+41
+00:00:09,880 --> 00:00:10,060
+clues about <font color="#ff00ffff">what</font> the
+
+42
+00:00:10,060 --> 00:00:10,180
+clues about what <font color="#ff00ffff">the</font>
+
+43
+00:00:10,180 --> 00:00:10,460
+<font color="#ff00ffff">object</font> is made of.
+
+44
+00:00:10,460 --> 00:00:10,720
+object <font color="#ff00ffff">is</font> made of.
+
+45
+00:00:10,720 --> 00:00:10,880
+object is <font color="#ff00ffff">made</font> of.
+
+46
+00:00:10,880 --> 00:00:11,060
+object is made <font color="#ff00ffff">of.</font>
+
+47
+00:00:11,808 --> 00:00:11,920
+<font color="#ff00ffff">Plus</font> they know
+
+48
+00:00:11,920 --> 00:00:12,120
+Plus <font color="#ff00ffff">they</font> know
+
+49
+00:00:12,120 --> 00:00:12,300
+Plus they <font color="#ff00ffff">know</font>
+
+50
+00:00:12,300 --> 00:00:12,500
+<font color="#ff00ffff">that</font> dropping your favorite
+
+51
+00:00:12,500 --> 00:00:12,800
+that <font color="#ff00ffff">dropping</font> your favorite
+
+52
+00:00:12,800 --> 00:00:12,980
+that dropping <font color="#ff00ffff">your</font> favorite
+
+53
+00:00:12,980 --> 00:00:13,220
+that dropping your <font color="#ff00ffff">favorite</font>
+
+54
+00:00:13,220 --> 00:00:13,480
+<font color="#ff00ffff">cup</font> makes you
+
+55
+00:00:13,480 --> 00:00:13,840
+cup <font color="#ff00ffff">makes</font> you
+
+56
+00:00:13,840 --> 00:00:14,020
+cup makes <font color="#ff00ffff">you</font>
+
+57
+00:00:14,020 --> 00:00:14,180
+<font color="#ff00ffff">come</font> running right away.
+
+58
+00:00:14,180 --> 00:00:14,440
+come <font color="#ff00ffff">running</font> right away.
+
+59
+00:00:14,440 --> 00:00:14,680
+come running <font color="#ff00ffff">right</font> away.
+
+60
+00:00:14,680 --> 00:00:14,920
+come running right <font color="#ff00ffff">away.</font>
+
+61
+00:00:15,460 --> 00:00:15,560
+<font color="#ff00ffff">It</font> is just
+
+62
+00:00:15,560 --> 00:00:15,660
+It <font color="#ff00ffff">is</font> just
+
+63
+00:00:15,660 --> 00:00:15,800
+It is <font color="#ff00ffff">just</font>
+
+64
+00:00:15,800 --> 00:00:15,920
+<font color="#ff00ffff">a</font> funny game
+
+65
+00:00:15,920 --> 00:00:16,120
+a <font color="#ff00ffff">funny</font> game
+
+66
+00:00:16,120 --> 00:00:16,340
+a funny <font color="#ff00ffff">game</font>
+
+67
+00:00:16,340 --> 00:00:16,520
+<font color="#ff00ffff">to</font> get your
+
+68
+00:00:16,520 --> 00:00:16,660
+to <font color="#ff00ffff">get</font> your
+
+69
+00:00:16,660 --> 00:00:16,760
+to get <font color="#ff00ffff">your</font>
+
+70
+00:00:16,760 --> 00:00:17,100
+<font color="#ff00ffff">attention</font> when they
+
+71
+00:00:17,100 --> 00:00:17,300
+attention <font color="#ff00ffff">when</font> they
+
+72
+00:00:17,300 --> 00:00:17,440
+attention when <font color="#ff00ffff">they</font>
+
+73
+00:00:17,440 --> 00:00:17,640
+<font color="#ff00ffff">feel</font> super bored.
+
+74
+00:00:17,640 --> 00:00:17,960
+feel <font color="#ff00ffff">super</font> bored.
+
+75
+00:00:17,960 --> 00:00:18,240
+feel super <font color="#ff00ffff">bored.</font>
+
+76
+00:00:18,760 --> 00:00:18,860
+<font color="#ff00ffff">And</font> trust me
+
+77
+00:00:18,860 --> 00:00:19,060
+And <font color="#ff00ffff">trust</font> me
+
+78
+00:00:19,060 --> 00:00:19,280
+And trust <font color="#ff00ffff">me</font>
+
+79
+00:00:19,280 --> 00:00:19,440
+<font color="#ff00ffff">when</font> I say.
+
+80
+00:00:19,440 --> 00:00:19,560
+when <font color="#ff00ffff">I</font> say.
+
+81
+00:00:19,560 --> 00:00:19,740
+when I <font color="#ff00ffff">say.</font>

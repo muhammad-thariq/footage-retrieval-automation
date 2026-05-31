@@ -1,10 +1,10 @@
 """
 PCC interface backend.
 
-Run:
+Run (from the project root):
     .\.venv\Scripts\Activate.ps1
     pip install fastapi uvicorn
-    python server.py
+    python server/server.py
 
 Open http://127.0.0.1:8000
 """
@@ -23,7 +23,11 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from pydantic import BaseModel
 
-ROOT = Path(__file__).parent
+SERVER_DIR = Path(__file__).parent          # server/ — holds this file + pipeline scripts
+PROJECT_ROOT = SERVER_DIR.parent            # repo root — subprocess cwd; footage/ and sfx/ resolve here
+INTERFACE = PROJECT_ROOT / "interface" / "interface.html"
+TEMP = PROJECT_ROOT / "temp"                # working intermediates (input.txt, heart_all.*)
+VIDEO_DIR = PROJECT_ROOT / "video-saved"    # finished videos
 PY = sys.executable  # use the same interpreter that launched uvicorn (respects venv)
 
 app = FastAPI(title="PCC")
@@ -36,9 +40,9 @@ jobs: dict[str, dict[str, Any]] = {}
 
 class RunConfig(BaseModel):
     script: str = ""
-    out_video: str = "heart_all_visual.mp4"
-    audio_wav: str = "heart_all.wav"
-    subs_srt: str = "heart_all.srt"
+    out_video: str = "temp/heart_all_visual.mp4"
+    audio_wav: str = "temp/heart_all.wav"
+    subs_srt: str = "temp/heart_all.srt"
     footage_dir: str = "footage"
     size: str = "1080x1920"
     fit: str = "cover"
@@ -69,12 +73,12 @@ class RunConfig(BaseModel):
 
 @app.get("/")
 async def index():
-    return FileResponse(ROOT / "interface.html")
+    return FileResponse(INTERFACE)
 
 
 @app.get("/api/script")
 async def read_script():
-    p = ROOT / "input.txt"
+    p = TEMP / "input.txt"
     text = p.read_text(encoding="utf-8") if p.exists() else ""
     return {"script": text}
 
@@ -82,14 +86,13 @@ async def read_script():
 @app.get("/api/files")
 async def list_files():
     """Tell the UI which intermediates already exist so user can skip stages."""
-    def info(name: str) -> dict[str, Any]:
-        p = ROOT / name
+    def info(p: Path) -> dict[str, Any]:
         return {"exists": p.exists(), "size": p.stat().st_size if p.exists() else 0}
     return {
-        "input.txt": info("input.txt"),
-        "heart_all.wav": info("heart_all.wav"),
-        "heart_all.srt": info("heart_all.srt"),
-        "heart_all_visual.mp4": info("heart_all_visual.mp4"),
+        "input.txt": info(TEMP / "input.txt"),
+        "heart_all.wav": info(TEMP / "heart_all.wav"),
+        "heart_all.srt": info(TEMP / "heart_all.srt"),
+        "heart_all_visual.mp4": info(TEMP / "heart_all_visual.mp4"),
     }
 
 
@@ -134,10 +137,14 @@ async def stream(job_id: str):
 
 @app.get("/api/video/{filename}")
 async def video(filename: str):
-    path = (ROOT / filename).resolve()
-    if not str(path).startswith(str(ROOT.resolve())) or not path.exists():
-        return JSONResponse({"error": "not found"}, status_code=404)
-    return FileResponse(path, media_type="video/mp4")
+    # Final titled videos live in video-saved/; the bare footage cut lives in temp/
+    # (served when hardsub is skipped). Only the bare filename is honoured.
+    name = Path(filename).name
+    for base in (VIDEO_DIR, TEMP):
+        path = (base / name).resolve()
+        if str(path).startswith(str(base.resolve())) and path.exists():
+            return FileResponse(path, media_type="video/mp4")
+    return JSONResponse({"error": "not found"}, status_code=404)
 
 
 # ---------- pipeline ----------
@@ -161,15 +168,16 @@ async def run_pipeline(job_id: str, cfg: RunConfig):
     try:
         # Persist script to input.txt before anything else
         if cfg.script.strip():
-            (ROOT / "input.txt").write_text(cfg.script, encoding="utf-8")
-            await emit("log", {"line": "[setup] wrote input.txt", "level": "info"})
+            TEMP.mkdir(parents=True, exist_ok=True)
+            (TEMP / "input.txt").write_text(cfg.script, encoding="utf-8")
+            await emit("log", {"line": "[setup] wrote temp/input.txt", "level": "info"})
 
         await emit("stages", {"stages": [{"id": s, "label": l, "status": "pending"} for s, l in STAGES]})
 
         # 1. TTS
         if cfg.run_tts:
             await emit("stage", {"id": "tts", "status": "running"})
-            await run_cmd([PY, "kokoro_heart.py"], emit)
+            await run_cmd([PY, str(SERVER_DIR / "kokoro_heart.py")], emit)
             await emit("stage", {"id": "tts", "status": "done"})
         else:
             await emit("stage", {"id": "tts", "status": "skipped"})
@@ -179,7 +187,7 @@ async def run_pipeline(job_id: str, cfg: RunConfig):
             await emit("stage", {"id": "srt", "status": "running"})
             # stable-ts prompts to overwrite if the output already exists,
             # which would hang our subprocess (no interactive stdin). Remove it first.
-            srt_path = ROOT / cfg.subs_srt
+            srt_path = PROJECT_ROOT / cfg.subs_srt
             if srt_path.exists():
                 srt_path.unlink()
                 await emit("log", {"line": f"[srt] removed existing {cfg.subs_srt} to avoid overwrite prompt", "level": "info"})
@@ -202,7 +210,7 @@ async def run_pipeline(job_id: str, cfg: RunConfig):
         # 3. SRT color fix (Python equivalent of the PowerShell replace)
         if cfg.run_color_fix:
             await emit("stage", {"id": "color", "status": "running"})
-            srt = ROOT / cfg.subs_srt
+            srt = PROJECT_ROOT / cfg.subs_srt
             if srt.exists():
                 text = srt.read_text(encoding="utf-8")
                 before = text.count("#00ff00")
@@ -220,9 +228,9 @@ async def run_pipeline(job_id: str, cfg: RunConfig):
         if cfg.run_footage:
             await emit("stage", {"id": "footage", "status": "running"})
             args = [
-                PY, "footage.py",
+                PY, str(SERVER_DIR / "footage.py"),
                 "--footage_dir", cfg.footage_dir,
-                "--input_txt", "input.txt",
+                "--input_txt", "temp/input.txt",
                 "--subs_srt", cfg.subs_srt,
                 "--audio_wav", cfg.audio_wav,
                 "--out_video", cfg.out_video,
@@ -253,7 +261,10 @@ async def run_pipeline(job_id: str, cfg: RunConfig):
         if cfg.run_hardsub:
             await emit("stage", {"id": "hardsub", "status": "running"})
             args = [
-                PY, "burn_hardsub_fit_ass.py",
+                PY, str(SERVER_DIR / "burn_hardsub_fit_ass.py"),
+                "--video_in", cfg.out_video,
+                "--srt_in", cfg.subs_srt,
+                "--video_out", "video-saved/heart_all_visual_output.mp4",
                 "--ass_color_order", cfg.hardsub_color_order,
                 "--margin_v_ratio", str(cfg.hardsub_margin_v_ratio),
                 "--base_scale", str(cfg.hardsub_base_scale),
@@ -313,7 +324,7 @@ async def run_cmd(cmd: list[str], emit, capture_re: re.Pattern | None = None) ->
         stdin=asyncio.subprocess.DEVNULL,  # no interactive prompts — fail fast on EOF
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.STDOUT,
-        cwd=str(ROOT),
+        cwd=str(PROJECT_ROOT),
         env=env,
     )
     assert proc.stdout is not None

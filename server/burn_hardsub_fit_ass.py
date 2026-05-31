@@ -148,11 +148,11 @@ def rgb_to_ass(hexcode: str, order: str = "bgr", with_alpha: bool = True) -> str
 
 def main():
     ap = argparse.ArgumentParser(description="Burn SRT into MP4 with guaranteed-fit hardsubs (HTML-safe)")
-    ap.add_argument("--video_in", type=str, default="heart_all_visual.mp4")
-    ap.add_argument("--srt_in",   type=str, default="heart_all.srt")
-    
+    ap.add_argument("--video_in", type=str, default="temp/heart_all_visual.mp4")
+    ap.add_argument("--srt_in",   type=str, default="temp/heart_all.srt")
+
     # --- MODIFIED: Changed default output from heart_all_visual_hardsub.mp4 to heart_all_visual_output.mp4 ---
-    ap.add_argument("--video_out", type=str, default="heart_all_visual_output.mp4")
+    ap.add_argument("--video_out", type=str, default="video-saved/heart_all_visual_output.mp4")
 
     # appearance & fit
     ap.add_argument("--font", type=str, default="Arial")
@@ -182,7 +182,7 @@ def main():
     args = ap.parse_args()
     # --- Set video_out from first line of input.txt (if present) ---
     # Keep everything else unchanged.
-    input_title_file = Path("input.txt")
+    input_title_file = Path("temp/input.txt")
     if input_title_file.exists():
         try:
             first_line = input_title_file.read_text(encoding="utf-8", errors="ignore").splitlines()[0].strip()
