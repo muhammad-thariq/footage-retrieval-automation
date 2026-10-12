@@ -42,15 +42,15 @@
 It ships with a **FastAPI** backend and a single-page web UI that streams live pipeline logs over **Server-Sent Events (SSE)**, so you can run and re-run the pipeline without memorizing CLI flags.
 
 ### Core Features
-*   **🌐 Web Interface**: Single-page dashboard (`interface.html`) with a script editor, per-stage toggles, a live streaming console, and an in-browser video preview.
-*   **🧠 Semantic Footage Matching**: Ranks footage per sentence with `semantic_sim + 0.75 * lexical_match` using cached sentence-transformer embeddings.
-*   **⏱️ SRT-Driven Timing**: Per-sentence durations come from first-word boundaries in the SRT timeline, not equal splits, so clips track the voiceover.
-*   **🔊 Neural TTS**: Generates the voiceover with **Kokoro-82M** (`af_heart` voice) directly from `temp/input.txt`.
-*   **✨ Precise Subtitling**: Uses **OpenAI Whisper** via `stable-ts` for word-level timestamps, then burns them as fitted **ASS** hardsubs.
-*   **🎬 Vertical Adaptation**: Scales/crops or letterboxes footage into 1080×1920 (9:16) with `cover`, `contain`, or `blurpad` fit modes.
-*   **🎵 Audio Mixing**: Mixes clip-native audio with the voiceover; loops `sfx/bell.mp3` under the whole video as a quiet bed track when present.
-*   **♻️ Least-Used Selection**: Persistent counters spread footage usage across runs, with optional family-diversity and clip-exclusion controls.
-*   **🪝 Stage Toggles**: Skip any of TTS / subtitles / color-fix / footage / hardsub to re-use existing intermediates.
+*   **Web Interface**: Single-page dashboard (`interface.html`) with a script editor, per-stage toggles, a live streaming console, and an in-browser video preview.
+*   **Semantic Footage Matching**: Ranks footage per sentence with `semantic_sim + 0.75 * lexical_match` using cached sentence-transformer embeddings.
+*   **SRT-Driven Timing**: Per-sentence durations come from first-word boundaries in the SRT timeline, not equal splits, so clips track the voiceover.
+*   **Neural TTS**: Generates the voiceover with **Kokoro-82M** (`af_heart` voice) directly from `temp/input.txt`.
+*   **Precise Subtitling**: Uses **OpenAI Whisper** via `stable-ts` for word-level timestamps, then burns them as fitted **ASS** hardsubs.
+*   **Vertical Adaptation**: Scales/crops or letterboxes footage into 1080×1920 (9:16) with `cover`, `contain`, or `blurpad` fit modes.
+*   **Audio Mixing**: Mixes clip-native audio with the voiceover; loops `sfx/bell.mp3` under the whole video as a quiet bed track when present.
+*   **Least-Used Selection**: Persistent counters spread footage usage across runs, with optional family-diversity and clip-exclusion controls.
+*   **Stage Toggles**: Skip any of TTS / subtitles / color-fix / footage / hardsub to re-use existing intermediates.
 
 ---
 
